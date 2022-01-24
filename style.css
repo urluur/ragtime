@@ -1,0 +1,12 @@
+/* Zato da je JZZ.input.Kbd() oziroma pianoIn, pianoOut pravilno renderiran. Drugač so presledki med tipkami, ker so <span>. */
+.pianoroll > span > span {
+	box-sizing: content-box;
+}
+
+/* Da knofi nimajo outline */
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active, 
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus, .btn:active, .btn:hover{
+    box-shadow: none!important;
+    outline: 0;
+}
