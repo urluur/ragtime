@@ -8,12 +8,12 @@ function Base64ToSmfPlayer() {
 	// midiSessionGenerateFile(recordingName + '.mid', smfDatazBase64);
 }
 
-function promptAndReturnString(message, value='') {
+function promptAndReturnString(message, value = '') {
 	var answer = prompt(message, value);
 	if (answer === null || answer == '') {
 		return false;
 	} else {
-	return answer;
+		return answer;
 	}
 }
 
@@ -28,7 +28,7 @@ function addToRecordingsList(author, name, b64dataz) {
 	var itemName = author + ' - ' + name;
 
 	var uri = 'data:audio/midi;base64,' + b64dataz; // data URI
-	$("#recordingsList").append('<a data-recording-author="'+author+'" data-recording-name="'+name+'" class="list-group-item list-group-item-action" data-toggle="list" href="'+uri+'">'+itemName+'</a>');
+	$("#recordingsList").append('<a data-recording-author="' + author + '" data-recording-name="' + name + '" class="list-group-item list-group-item-action" data-toggle="list" href="' + uri + '">' + itemName + '</a>');
 	// console.log(author, name, b64dataz);
 };
 
@@ -88,12 +88,12 @@ function removeDynamicPlayerHtml(playerName) {
 
 function isValidParticipant(user) {
 	// console.log('inside function: ' + arguments.callee.name);
-	return typeof(participants[user]) !== 'undefined' ? true : false;
+	return typeof (participants[user]) !== 'undefined' ? true : false;
 }
 
 function isValidParticipantPiano(user) {
 	// console.log('inside function: ' + arguments.callee.name);
-	return typeof(participants[user]['piano'] !== 'undefined') ? true : false;
+	return typeof (participants[user]['piano'] !== 'undefined') ? true : false;
 }
 
 function copyShareUrlToClipboard() {
@@ -104,8 +104,8 @@ function copyShareUrlToClipboard() {
 	document.execCommand('copy');
 	inputc.parentNode.removeChild(inputc);
 	$('#shareSession').html('<i class="fas fa-share-alt"></i> Link copied to clipboard!');
-	setTimeout(function() { $('#shareSession').html('<i class="fas fa-share-alt"></i> Share this session'); }, 2000);
-	
+	setTimeout(function () { $('#shareSession').html('<i class="fas fa-share-alt"></i> Share this session'); }, 2000);
+
 }
 
 function promptAndJoinSession() {
@@ -143,14 +143,14 @@ var pianoOut;
 
 var virtualKbdDynamic = {};
 
-JZZ.MIDI.prototype.isNoteEvent = function() {
+JZZ.MIDI.prototype.isNoteEvent = function () {
 	var c = this[0];
 	if (typeof c == 'undefined' || c < 0x80 || c > 0x9f)
 		return false;
 	return this[1] >= 0;
 };
 
-JZZ.MIDI.prototype.isProgramChangeEvent = function() {
+JZZ.MIDI.prototype.isProgramChangeEvent = function () {
 	var c = this[0];
 	if (typeof c == 'undefined' || c < 0xc0 || c > 0xcf)
 		return false;
@@ -159,8 +159,8 @@ JZZ.MIDI.prototype.isProgramChangeEvent = function() {
 
 var synth;
 synth = JZZ.synth.MIDIjs({ soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/", instrument: "acoustic_grand_piano" })
-  .or(function(){ console.log("JZZ.synth.MIDIjs() soundfontUrl loading..."); alert('Cannot load MIDI.js!\n' + this.err()); })
-  .and(function(){ console.log("JZZ.synth.MIDIjs() soundfontUrl loaded"); });
+	.or(function () { console.log("JZZ.synth.MIDIjs() soundfontUrl loading..."); alert('Cannot load MIDI.js!\n' + this.err()); })
+	.and(function () { console.log("JZZ.synth.MIDIjs() soundfontUrl loaded"); });
 
 // MIDI.loadPlugin({
 // 		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
@@ -179,10 +179,10 @@ function loadAndChangeTo(instrumentName) {
 		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FatBoy/",
 		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/MusyngKite/",
 		instrument: instrumentName,
-		onprogress: function(state, progress) {
+		onprogress: function (state, progress) {
 			console.log(state, progress);
 		},
-		onsuccess: function() {
+		onsuccess: function () {
 			console.log("loadAndChangeTo onsuccess: " + instrumentName);
 			MIDI.setVolume(0, 127);
 			MIDI.programChange(0, MIDI.GM.byName[instrumentName].number);
@@ -248,30 +248,30 @@ var player;
 var debug = false;
 
 var responsivePianoOptions = {
-  ww: 18,
-  bw: 10,
-  wl: 100,
-  bl: 70,
-  // from: 'A1', to: 'C8',
-  from: 'A1', to: 'C8',
-  // 530: {from: 'C3', to: 'B6'},
-  // 768: {from: 'D2', to: 'E7'},
-  // 992: {from: 'A1', to: 'C9'},
+	ww: 18,
+	bw: 10,
+	wl: 100,
+	bl: 70,
+	// from: 'A1', to: 'C8',
+	from: 'A1', to: 'C8',
+	// 530: {from: 'C3', to: 'B6'},
+	// 768: {from: 'D2', to: 'E7'},
+	// 992: {from: 'A1', to: 'C9'},
 }
 
 var mainPianoOptions = {
 	...responsivePianoOptions,
-	onCreate: function() {
-		this.getWhiteKeys().setStyle({ backgroundColor:'#ffe' }, {});
-		this.getKeys().setStyle({}, { backgroundColor:'#c6f' });
+	onCreate: function () {
+		this.getWhiteKeys().setStyle({ backgroundColor: '#ffe' }, {});
+		this.getKeys().setStyle({}, { backgroundColor: '#c6f' });
 	}
 }
 
 var dynamicPianoOptions = {
 	...responsivePianoOptions,
-	onCreate: function() {
-		this.getWhiteKeys().setStyle({ backgroundColor:'#ffe' }, {});
-		this.getKeys().setStyle({}, { backgroundColor:'#6ff' });
+	onCreate: function () {
+		this.getWhiteKeys().setStyle({ backgroundColor: '#ffe' }, {});
+		this.getKeys().setStyle({}, { backgroundColor: '#6ff' });
 	}
 }
 
@@ -291,7 +291,7 @@ function tickDuration(bpm, ppqn) {
 
 
 function startTicker() {
-	midiTimer = setInterval(function() { midiTicks++; }, tickDuration(bpm, ppqn));
+	midiTimer = setInterval(function () { midiTicks++; }, tickDuration(bpm, ppqn));
 }
 
 
@@ -332,7 +332,7 @@ function midiSessionAddNote(jmidi) {
 
 // var dt = setInterval(function() { console.log(myName);}, 50);
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 	/*
 	TODO
@@ -367,7 +367,7 @@ $(document).ready(function() {
 
 	// get/set session name
 	var [url, sessionName] = window.location.href.split('#');
-	if (typeof(sessionName) === 'undefined') {
+	if (typeof (sessionName) === 'undefined') {
 		var sessionName = getCookie('sessionName') || randomName();
 		setCookie('sessionName', sessionName, 3650);
 		// set window URL
@@ -383,7 +383,7 @@ $(document).ready(function() {
 	// brisi cookie myName in raje nastavi mojeIme
 	var checkName = getCookie('myName');
 	if (checkName) {
-		console.log('setCookie '+checkName+' 3650 days');
+		console.log('setCookie ' + checkName + ' 3650 days');
 		setCookie('mojeIme', checkName, 3650);
 	}
 
@@ -391,13 +391,13 @@ $(document).ready(function() {
 	setCookie('mojeIme', mojeIme, 3650);
 	showMyName(mojeIme);
 
-	$('h1').on('click',myLoop);
+	$('h1').on('click', myLoop);
 	$('#midiPlayerStop').click(midiPlayerStop);
 	$('#midiPlayerPlay').click(midiPlayerPlay);
 	$('#midiSessionRecord').click(midiSessionToggle);
 	$('#midiSessionPublish').click(midiSessionPublish);
 
-	$('#myName').on('click',changeMyName);
+	$('#myName').on('click', changeMyName);
 	$('#className').text(sessionName);
 
 	// $('body').on('taphold', 'div#recordingsList > a', function (event) { 
@@ -407,7 +407,7 @@ $(document).ready(function() {
 	// });
 
 	// click event handler za vse dinamicne elemente kreirane z addToRecordingsList()
-	$('body').on('click', 'div#recordingsList > a', function(event) {
+	$('body').on('click', 'div#recordingsList > a', function (event) {
 
 		var element = $(this);
 		var smfAuthor = element.attr('data-recording-author');
@@ -451,13 +451,13 @@ $(document).ready(function() {
 	$('#metronomeButton').on('click', toggleMetronome);
 
 	var spinner = $("input#metronomeBpmValue").inputSpinner();
-	$("input#metronomeBpmValue").on('input', function(event) {
+	$("input#metronomeBpmValue").on('input', function (event) {
 		bpm = spinner.val();
 		changeMetronomeMarking(bpm);
 		metronome.setTempo(bpm);
 	});
 
-	$("input#metronomeBpmValue").on('change', function(event) {
+	$("input#metronomeBpmValue").on('change', function (event) {
 		bpm = spinner.val();
 		changeMetronomeMarking(bpm);
 		metronome.setTempo(bpm);
@@ -486,15 +486,15 @@ $(document).ready(function() {
 	JZZ.synth.Tiny.register('Web Audio');
 
 
-	pianoIn = JZZ.input.Kbd({ at:'pianoIn_space', ...mainPianoOptions });
+	pianoIn = JZZ.input.Kbd({ at: 'pianoIn_space', ...mainPianoOptions });
 	// pianoOut = JZZ.input.Kbd({ at:'pianoOut_space', ...mainPianoOptions });
 
 	JZZ.input.ASCII({
-	  2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
-	  Q: 'C5', W: 'D5', E: 'E5', R: 'F5', T: 'G5', Y: 'A5', U: 'B5', I: 'C6', O: 'D6',
-	  P: 'E6', '[': 'F6', ']': 'G6', S: 'C#4', D: 'D#4', G: 'F#4', H: 'G#4', J: 'A#4',
-	  L: 'C#5', ':': 'D#5', Z: 'C4', X: 'D4', C: 'E4', V: 'F4', B: 'G4', N: 'A4', M: 'B4',
-	  '<': 'C5', '>': 'D5', '?': 'E5'
+		2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
+		Q: 'C5', W: 'D5', E: 'E5', R: 'F5', T: 'G5', Y: 'A5', U: 'B5', I: 'C6', O: 'D6',
+		P: 'E6', '[': 'F6', ']': 'G6', S: 'C#4', D: 'D#4', G: 'F#4', H: 'G#4', J: 'A#4',
+		L: 'C#5', ':': 'D#5', Z: 'C4', X: 'D4', C: 'E4', V: 'F4', B: 'G4', N: 'A4', M: 'B4',
+		'<': 'C5', '>': 'D5', '?': 'E5'
 	}).connect(pianoIn);
 
 
@@ -508,7 +508,7 @@ $(document).ready(function() {
 
 	function jebalaTeFunkcija(pek) {
 		console.log('inside function: ' + arguments.callee.name);
-		return typeof(participants[pek]) !== 'undefined' ? true : false;
+		return typeof (participants[pek]) !== 'undefined' ? true : false;
 	}
 
 
@@ -541,7 +541,6 @@ $(document).ready(function() {
 			alert('msName error inside function: ' + arguments.callee.name);
 			return false;
 		}
-
 	}
 
 
@@ -619,8 +618,8 @@ $(document).ready(function() {
 	}
 
 	function publishMyNote(jmidi) {
-		var note     = jmidi.getNote();
-		var channel  = jmidi.getChannel();
+		var note = jmidi.getNote();
+		var channel = jmidi.getChannel();
 		var velocity = jmidi.getVelocity();
 
 		msg = mojeIme + ':' + jmidi[0] + ',' + jmidi[1] + ',' + jmidi[2];
@@ -648,7 +647,7 @@ $(document).ready(function() {
 	async function myLoop() {
 		//21 .. 108
 		var jmidi;
-		for (note = 21; note <= 108; note+=3) {
+		for (note = 21; note <= 108; note += 3) {
 
 			jmidi = JZZ.MIDI.noteOn(0, note, 127);
 			midiHandler(jmidi);
@@ -656,7 +655,7 @@ $(document).ready(function() {
 			await sleep(20);
 
 			jmidi = JZZ.MIDI.noteOff(0, note, 127);
-			setTimeout(midiHandler,15,jmidi);
+			setTimeout(midiHandler, 15, jmidi);
 
 			//await sleep(5);
 
@@ -666,7 +665,7 @@ $(document).ready(function() {
 	function midiPlayerPlay() {
 		console.log('inside function: ' + arguments.callee.name);
 		// if player is populated with midi session data
-		if (typeof(player) !== 'undefined' && !player.playing) {
+		if (typeof (player) !== 'undefined' && !player.playing) {
 			player.connect(output);
 			player.play();
 			buttonPlaySwitch(player.playing)
@@ -707,7 +706,7 @@ $(document).ready(function() {
 		if (isMidiSession) {
 			midiSessionStop();
 		}
-		if (typeof(player) !== 'undefined' && player.playing) {
+		if (typeof (player) !== 'undefined' && player.playing) {
 			player.stop();
 			buttonPlaySwitch(player.playing);
 		}
@@ -787,7 +786,7 @@ $(document).ready(function() {
 	function generateSmfPlayer(smfDataz) {
 		console.log('inside function: ' + arguments.callee.name);
 		player = JZZ.MIDI.SMF(smfDataz).player();
-		player.onEnd = function() { buttonPlaySwitch(player.playing); };
+		player.onEnd = function () { buttonPlaySwitch(player.playing); };
 		player.connect(pianoIn);
 	}
 
@@ -809,21 +808,20 @@ $(document).ready(function() {
 		// midiSessionGenerateFile(recordingName + '.mid', smfDatazBase64);
 
 		addToRecordingsList(recordingAuthor, recordingName, smfDatazBase64);
-
 	}
 
 
 	function midiHandler(jmidi) {
 
 		lastMidi = jmidi;
-		
+
 		var inputIsVirtual = input._name == 'HTML Piano In' ? true : false;
 
 		// https://github.com/jazz-soft/JZZ/blob/master/javascript/JZZ.js#L2158
 
 		// MIDI note event received (off=0x80-0x8f, on=0x90-0x9f)
 		// if ( jmidi.isNoteOn() || jmidi.isNoteOff() ) {
-		if ( jmidi.isNoteEvent() ) {
+		if (jmidi.isNoteEvent()) {
 			// send to server ASAP
 			publishMyNote(jmidi);
 
@@ -854,7 +852,7 @@ $(document).ready(function() {
 		}
 
 		else {
-			
+
 
 			var data = jmidi[0];
 
@@ -880,7 +878,6 @@ $(document).ready(function() {
 					break;
 				}
 			}
-
 		}
 
 	};
@@ -898,12 +895,12 @@ $(document).ready(function() {
 	// var mqttPort = 8081;
 	var mqttSrv = 'fandangoc.dmz6.net';
 	var mqttPort = 8081;
-	
-	var tBaseName     = 'mididerp/sessions/' + sessionName;
-	var tClients      = tBaseName + '/clients';
-	var tNoteEvents   = tBaseName + '/noteEvents';
-	var tRTT          = tBaseName + '/rtt';
-	var tPcnEvents    = tBaseName + '/pcnEvents';
+
+	var tBaseName = 'mididerp/sessions/' + sessionName;
+	var tClients = tBaseName + '/clients';
+	var tNoteEvents = tBaseName + '/noteEvents';
+	var tRTT = tBaseName + '/rtt';
+	var tPcnEvents = tBaseName + '/pcnEvents';
 	var tMidiSessions = tBaseName + '/midiSessions';
 
 	client = new Paho.MQTT.Client(mqttSrv, mqttPort, mojeIme);
@@ -918,12 +915,12 @@ $(document).ready(function() {
 	client.onMessageArrived = onMessageArrived;
 
 	var mqttOptions = {
-		useSSL:       true,
-		reconnect:    false,
-		timeout:      3,
-		onSuccess:    onConnect,
-		userName:     'monophonicBernstein12',
-		password:     'polyrhythmicSchubert83'
+		useSSL: true,
+		reconnect: false,
+		timeout: 3,
+		onSuccess: onConnect,
+		userName: 'monophonicBernstein12',
+		password: 'polyrhythmicSchubert83'
 	};
 
 	// connect mqtt client
@@ -931,7 +928,7 @@ $(document).ready(function() {
 
 	function initRttTimer() {
 		console.log('inside function: ' + arguments.callee.name);
-		if (typeof(rttTimer) === 'number') {
+		if (typeof (rttTimer) === 'number') {
 			clearInterval(rttTimer);
 		}
 		rttTimer = setInterval(sendRttProbe, 500);
@@ -982,7 +979,7 @@ $(document).ready(function() {
 		// update properties
 		participants[sender]['rtt'] = rtt + ' ms';
 		participants[sender]['lastUpdate'] = Date.now();
-		
+
 		// if (isNew) {
 		// }
 
@@ -1007,15 +1004,14 @@ $(document).ready(function() {
 			// tole je zaradi addDynamicPlayerHtml();
 			if (user == mojeIme) {
 				$('#myRtt').text(participants[user]['rtt']);
-				$('#remotePlayerDynamic[data-participant-name="'+ mojeIme +'"]').find('#playerRtt').text(participants[user]['rtt']);
+				$('#remotePlayerDynamic[data-participant-name="' + mojeIme + '"]').find('#playerRtt').text(participants[user]['rtt']);
 				// $('#myName').text(user);
 				// $('#participants').append(user + ' (me) - ' + participants[user]['rtt'] + '<br>');
 			} else {
-				$('#remotePlayerDynamic[data-participant-name="'+ user +'"]').find('#playerRtt').text(participants[user]['rtt']);
+				$('#remotePlayerDynamic[data-participant-name="' + user + '"]').find('#playerRtt').text(participants[user]['rtt']);
 				// $('#participants').append(user + ' - ' + participants[user]['rtt'] + '<br>');
 			}
 		}
-
 	}
 
 	// called when the client loses its connection
@@ -1028,16 +1024,16 @@ $(document).ready(function() {
 
 	function showReceivedNote(virtualKbd, jmidi) {
 		// console.log('inside function: ' + arguments.callee.name);
-		var note     = jmidi.getNote();
-		var channel  = jmidi.getChannel();
+		var note = jmidi.getNote();
+		var channel = jmidi.getChannel();
 		var velocity = jmidi.getVelocity();
 
 		var jmidi = new JZZ.MIDI(jmidi);
 
 		// display keypress events
-		if ( jmidi.isNoteOn() ) {
+		if (jmidi.isNoteOn()) {
 			virtualKbd.noteOn(0, note, velocity);
-		} else if ( jmidi.isNoteOff() ) {
+		} else if (jmidi.isNoteOff()) {
 			virtualKbd.noteOff(0, note, velocity);
 		}
 	}
@@ -1080,9 +1076,8 @@ $(document).ready(function() {
 			// It accepts an array or a comma-separated list of the message bytes or another JZZ.MIDI object.
 			var jmidi = new JZZ.MIDI(midiBytes);
 
-
 			// if (jmidi.isNoteOn() || jmidi.isNoteOff() ) {
-			if (jmidi.isNoteEvent() ) {
+			if (jmidi.isNoteEvent()) {
 
 				// if sender not me OR (implied) sender is me and PlayMeFromServer
 				if (sender != mojeIme) {
@@ -1097,11 +1092,8 @@ $(document).ready(function() {
 					if (!inputIsVirtual) {
 						showReceivedNote(pianoIn, jmidi);
 					}
-
 				}
-
 			}
-
 		}
 
 		// RTT probe received
@@ -1122,7 +1114,6 @@ $(document).ready(function() {
 			if (recordingAuthor != '') {
 				addToRecordingsList(recordingAuthor, recordingName, recordingSmfDatazBase64);
 			}
-						
 		}
 	}
 
