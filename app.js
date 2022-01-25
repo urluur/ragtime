@@ -197,36 +197,6 @@ function GmIdToName(numeric) {
 	loadAndChangeTo(instrumentName);
 };
 
-// TOLE NE RABMO KER midiSessionAddNote()
-// var noteDuration = {};
-
-// function pushNote(jmidi) {
-// 	var note = jmidi.getNote();
-// 	// add new
-// 	if (typeof(noteDuration[note]) === 'undefined') {
-// 		noteDuration[note] = {};
-// 	}
-// 	// update properties
-// 	noteDuration[note]['start'] = Date.now();
-// }
-
-// function popNote(jmidi) {
-// 	var note = jmidi.getNote();
-// 	var duration = Date.now() - noteDuration[note]['start'];
-// 	delete noteDuration[note];
-// 	// console.log('note['+note+'].duration=' + duration + 'ms');
-// 	return duration;
-// }
-
-// function getNoteDuration(jmidi) {
-// 	// helper za midi recorder
-// 	if ( jmidi.isNoteOn() ) {
-// 		pushNote(jmidi);
-// 	} else if ( jmidi.isNoteOff() ) {
-// 		return popNote(jmidi);
-// 	}
-// }
-
 var smf;
 var trk;
 var isMidiSession = false;
