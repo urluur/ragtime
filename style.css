@@ -10,7 +10,6 @@
     box-shadow: none!important;
     outline: 0;
 }
-
 /*
     DEMO STYLE
 */
@@ -71,10 +70,8 @@ a, a:hover, a:focus {
 
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: #7386D5;
-    color: #fff;
+    min-width: 220px;
+    max-width: 220px;
     transition: all 0.3s;
 }
 
