@@ -330,7 +330,7 @@ $(document).ready(function () {
 	- FEATURE_REQUEST: arpeggiator
 	- FEATURE_REQUEST: če držiš shift ti izpiše katera nota je to (by Patrik)
 	- FEATURE_REQUEST: ko igraš po posnetku ti prikaže noto in jo ne spusti dokler ti ne zaigraš iste, potem gre naprej
-
+	- FEATURE_REQUEST: nared responsive keys nekje pod 860px https://jazz-soft.net/demo/Responsive.html
 	*/
 
 
@@ -361,7 +361,7 @@ $(document).ready(function () {
 	setCookie('mojeIme', mojeIme, 3650);
 	showMyName(mojeIme);
 
-	$('h1').on('click', myLoop);
+	$('demo').on('click', myLoop);
 	$('#midiPlayerStop').click(midiPlayerStop);
 	$('#midiPlayerPlay').click(midiPlayerPlay);
 	$('#midiSessionRecord').click(midiSessionToggle);

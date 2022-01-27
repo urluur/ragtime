@@ -65,183 +65,177 @@
 </head>
 
 <body class="bg-dark">
+	<nav id="intro " class="navbar navbar-expand-lg navbar-light bg-light mb-0">
+		<div class="container-fluid">
+			<button type="button" id="sidebarCollapse" class="navbar-btn">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<demo class="navbar-brand ps-2"><b>Ragtime!</b></demo>
+			<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-align-justify"></i>
+			</button>
 
+			<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+				<ul class="nav navbar-nav ml-auto">
+					<li class="nav-item active">
+
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Learn</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Play</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Game</a>
+					</li>
+				</ul>
+				<div class="pe-2"></div>
+				<div class="pb-2"></div>
+				<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navodila" aria-expanded="false" aria-controls="navodila">Help</button>
+			</div>
+		</div>
+	</nav>
 	<!-- tlele bo bootstrap koda -->
 	<div id="mainContainer" class="wrapper">
 
-			<div id="sidebar">
-				<!-- class name -->
-				<div id="classContainer" class="container-fluid p-3">
-					<div id="classBar" class="row rounded-top bg-secondary text-white">
-						<div class="col my-1">
-							Class name: <span id="className"></span>
-						</div>
-					</div>
-					<div id="classMain" class="row rounded-bottom bg-light">
-						<div class="col p-3">
-							<button type="button" class="my-1 btn btn-primary btn-sm" id="changeSession"
-								onClick="promptAndJoinSession()"><i class="fas fa-music"></i> Change class name</button>
-							<button type="button" class="my-1 btn btn-primary btn-sm" id="joinSession"
-								onClick="promptAndJoinSession()"><i class="fas fa-handshake"></i> Join other
-								class</button>
-							<button type="button" class="my-1 btn btn-primary btn-sm" id="shareSession"
-								onClick="copyShareUrlToClipboard()"><i class="fas fa-share-alt"></i> Share this
-								class</button>
-						</div>
+		<div id="sidebar" class="ps-2 pe-2">
+			<!-- class name -->
+			<div id="classContainer" class="container-fluid p-3">
+				<div id="classBar" class="row rounded-top bg-secondary text-white">
+					<div class="col my-1">
+						Class name: <span id="className"></span>
 					</div>
 				</div>
-
-
-				<!-- recordings -->
-				<div id="recordingsContainer" class="container p-3">
-					<div id="recordingsBar" class="row rounded-top bg-secondary text-white">
-						<div class="col">
-							Recordings
-						</div>
-					</div>
-					<div id="recordingsMain" class="row rounded-bottom bg-light">
-						<div class="col p-3">
-							<div id="recordingsList" class="list-group">
-							</div>
-							<a class="btn btn-info btn-sm text-white" href="#" role="button" id="midiFileOut">
-								<i class="bi bi-file-earmark-music"></i>
-								Select a recording
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- settings -->
-				<div id="settingsContainer" class="container-fluid p-3">
-					<div id="settingsBar" class="row rounded-top bg-secondary text-white">
-						<div class="col my-1">
-							MIDI settings and controls
-						</div>
-					</div>
-					<div id="settingsMain" class="row rounded-bottom bg-light text-dark">
-						<div class="col p-3">
-							MIDI IN <select id="sel_in"></select><br>
-							MIDI OUT <select id="sel_out"></select><br>
-							<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerStop><i
-									class="fas fa-stop"></i> Stop</button>
-							<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerPlay><i
-									class="fas fa-play"></i> Play</button>
-							<button type="button" class="my-1 btn btn-outline-danger btn-sm" id=midiSessionRecord><i
-									class="fas fa-circle"></i> Record</button><br>
-						</div>
-					</div>
-				</div>
-
-				<!-- metronome -->
-				<div id="metronomeContainer" class="container p-3">
-					<div id="metronomeBar" class="row rounded-top bg-secondary text-white">
-						<div class="col">
-							Metronome - <span id="metronomeMarking">Allegro</span>
-						</div>
-					</div>
-					<div id="metronomeMain" class="row rounded-bottom bg-light">
-						<div class="col p-3">
-							<!-- mi bi tud tak lep speglan metronom kot je tle https://www.imusic-school.com/en/tools/online-metronome/ -->
-							<input id="metronomeBpmValue" placeholder="Set BPM" required type="number" value="120"
-								min="30" max="300" step="1" />
-							<br>
-							<button type="button" class="btn btn-outline-dark btn-sm" id="metronomeButton"><i
-									class="fas fa-drum"></i> Start</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="content">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-	
-						<button type="button" id="sidebarCollapse" class="navbar-btn">
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
-						<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<i class="fas fa-align-justify"></i>
-						</button>
-	
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="nav navbar-nav ml-auto">
-								<li class="nav-item active">
-									<a class="nav-link" href="#">Page</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Page</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Page</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Page</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-				<!-- header -->
-				<div id="intro" class="container-fluid p-3">
-					<div id="introBar" class="row rounded-top bg-secondary text-white">
-						<div class="col">
-							<h1>ragtime!</h1>
-						</div>
-					</div>
-					<div id="introMain" class="row rounded-bottom bg-light">
-						<div class="col p-3">
-							<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="collapse"
-								data-bs-target="#navodila" aria-expanded="false" aria-controls="navodila">Help</button>
-						</div>
-					</div>
-				</div>
-
-				<!-- tole je za lokalnega userja, da vidis sam sebe -->
-				<div id="mainPlayer" class="container-fluid p-3">
-					<div id="mainPlayerStatusBar" class="row rounded-top bg-secondary text-white">
-						<div class="col">
-							<button type="button" class="btn btn-sm btn-secondary">
-								<span id="myName">myName</span> <span id="myRtt" class="badge badge-light">0 ms</span>
-							</button>
-						</div>
-					</div>
-					<div id="mainPlayerPianoroll" class="row rounded-bottom bg-light text-white">
-						<div class="col">
-							<div id="pianoIn_space" class="my-1 pianoroll"></div>
-						</div>
-					</div>
-				</div>
-
-				<!-- mal navodil -->
-				<div id="navodila" class="container-fluid p-3 collapse">
-					<div class="rounded-top row p-3 bg-secondary text-white">
-						MIDI IN - choose device you will be playing on.
-						Your keystrokes will be displayed on first pianoroll. Click on pianoroll name to change it.
-						Others joining this session will see you by that name as you will see separate pianoroll for
-						each participant.
-						In case you dont have any MIDI devices attached you can play on QWERTY keyboard by choosing
-						'HTML Piano In'.
-						If you just want to observe and listen then only choose MIDI OUT device.
-					</div>
-					<div class="row p-3 bg-secondary text-white">
-						MIDI OUT - how do you want keystrokes from others to be played.
-						Keystrokes from others will also be shown and played on separate pianorolls for each
-						participant.
-						If you just want to listen choose 'Web Audio' and enjoy when others play :)
-					</div>
-					<div class="rounded-bottom row p-3 bg-secondary text-white">
-						By recording the masterpiece you play it will instantly make it permanently available for others
-						joining this session at any time. They can playback and observe keystrokes you made so be
-						expressive for others that will learn from you :) Just hit Record button and start playing.
-						After you finish hit Record again or Stop. MIDI file will also became downloadable but there is
-						a catch; BPM is fixed to 120 and it will stay like that until we implement metronome.
+				<div id="classMain" class="row rounded-bottom bg-light">
+					<div class="col p-3">
+						<button type="button" class="my-1 btn btn-primary btn-sm" id="changeSession"
+							onClick="promptAndJoinSession()"><i class="fas fa-music"></i> Change class name</button>
+						<button type="button" class="my-1 btn btn-primary btn-sm" id="joinSession"
+							onClick="promptAndJoinSession()"><i class="fas fa-handshake"></i> Join other
+							class</button>
+						<button type="button" class="my-1 btn btn-primary btn-sm" id="shareSession"
+							onClick="copyShareUrlToClipboard()"><i class="fas fa-share-alt"></i> Share this
+							class</button>
 					</div>
 				</div>
 			</div>
 
 
-			
+			<!-- recordings -->
+			<div id="recordingsContainer" class="container p-3">
+				<div id="recordingsBar" class="row rounded-top bg-secondary text-white">
+					<div class="col">
+						Recordings
+					</div>
+				</div>
+				<div id="recordingsMain" class="row rounded-bottom bg-light">
+					<div class="col p-3">
+						<div id="recordingsList" class="list-group">
+						</div>
+						<a class="btn btn-info btn-sm text-white" href="#" role="button" id="midiFileOut">
+							<i class="bi bi-file-earmark-music"></i>
+							Select a recording
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- settings -->
+			<div id="settingsContainer" class="container-fluid p-3">
+				<div id="settingsBar" class="row rounded-top bg-secondary text-white">
+					<div class="col my-1">
+						MIDI settings and controls
+					</div>
+				</div>
+				<div id="settingsMain" class="row rounded-bottom bg-light text-dark">
+					<div class="col p-3">
+						MIDI IN <select id="sel_in"></select><br>
+						MIDI OUT <select id="sel_out"></select><br>
+						<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerStop><i
+								class="fas fa-stop"></i> Stop</button>
+						<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerPlay><i
+								class="fas fa-play"></i> Play</button>
+						<button type="button" class="my-1 btn btn-outline-danger btn-sm" id=midiSessionRecord><i
+								class="fas fa-circle"></i> Record</button><br>
+
+						<!-- tuki bi lahko biu tak player?
+						https://jazz-soft.net/doc/JZZ/midiplayer.html -->
+						
+					</div>
+				</div>
+			</div>
+
+			<!-- metronome -->
+			<div id="metronomeContainer" class="container p-3">
+				<div id="metronomeBar" class="row rounded-top bg-secondary text-white">
+					<div class="col">
+						Metronome - <span id="metronomeMarking">Allegro</span>
+					</div>
+				</div>
+				<div id="metronomeMain" class="row rounded-bottom bg-light">
+					<div class="col p-3">
+						<!-- mi bi tud tak lep speglan metronom kot je tle https://www.imusic-school.com/en/tools/online-metronome/ -->
+						<input id="metronomeBpmValue" placeholder="Set BPM" required type="number" value="120" min="30"
+							max="300" step="1" />
+						<br>
+						<button type="button" class="btn btn-outline-dark btn-sm" id="metronomeButton"><i
+								class="fas fa-drum"></i> Start</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<!-- tole je za lokalnega userja, da vidis sam sebe -->
+			<div id="mainPlayer" class="container-fluid p-3">
+				<div id="mainPlayerStatusBar" class="row rounded-top bg-secondary text-white">
+					<div class="col">
+						<button type="button" class="btn btn-sm btn-secondary">
+							<span id="myName">myName</span> <span id="myRtt" class="badge badge-light">0 ms</span>
+						</button>
+					</div>
+				</div>
+				<div id="mainPlayerPianoroll" class="row rounded-bottom bg-light text-white">
+					<div class="col">
+						<div id="pianoIn_space" class="my-1 pianoroll"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- mal navodil -->
+			<div id="navodila" class="container-fluid p-3 collapse">
+				<div class="rounded-top row p-3 bg-secondary text-white">
+					MIDI IN - choose device you will be playing on.
+					Your keystrokes will be displayed on first pianoroll. Click on pianoroll name to change it.
+					Others joining this session will see you by that name as you will see separate pianoroll for
+					each participant.
+					In case you dont have any MIDI devices attached you can play on QWERTY keyboard by choosing
+					'HTML Piano In'.
+					If you just want to observe and listen then only choose MIDI OUT device.
+				</div>
+				<div class="row p-3 bg-secondary text-white">
+					MIDI OUT - how do you want keystrokes from others to be played.
+					Keystrokes from others will also be shown and played on separate pianorolls for each
+					participant.
+					If you just want to listen choose 'Web Audio' and enjoy when others play :)
+				</div>
+				<div class="rounded-bottom row p-3 bg-secondary text-white">
+					By recording the masterpiece you play it will instantly make it permanently available for others
+					joining this session at any time. They can playback and observe keystrokes you made so be
+					expressive for others that will learn from you :) Just hit Record button and start playing.
+					After you finish hit Record again or Stop. MIDI file will also became downloadable but there is
+					a catch; BPM is fixed to 120 and it will stay like that until we implement metronome.
+				</div>
+			</div>
+		</div>
+
+
+
 
 
 	</div> <!-- id=mainContainer -->
