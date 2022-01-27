@@ -59,7 +59,7 @@ function addDynamicPlayerHtml(playerName) {
 		`;
 
 	// $('#mainContainer').append(newPlayerHtml);
-	$('#col2').append(newPlayerHtml);
+	$('#content').append(newPlayerHtml);
 
 	// https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 	var domElement = $('#remotePlayerDynamicPiano[data-participant-name="' + playerName + '"]')[0];
@@ -861,10 +861,10 @@ $(document).ready(function () {
 
 
 	// Create a client instance
-	// var mqttSrv = 'test.mosquitto.org';
-	// var mqttPort = 8081;
-	var mqttSrv = 'fandangoc.dmz6.net';
+	var mqttSrv = 'test.mosquitto.org';
 	var mqttPort = 8081;
+	// var mqttSrv = 'fandangoc.dmz6.net';
+	// var mqttPort = 8081;
 
 	var tBaseName = 'mididerp/sessions/' + sessionName;
 	var tClients = tBaseName + '/clients';

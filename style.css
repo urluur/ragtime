@@ -10,24 +10,6 @@
     box-shadow: none!important;
     outline: 0;
 }
-/*
-    DEMO STYLE
-*/
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
 
 a, a:hover, a:focus {
     color: inherit;
@@ -201,7 +183,7 @@ a.article, a.article:hover {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     #sidebar {
         margin-left: -250px;
         transform: rotateY(90deg);
