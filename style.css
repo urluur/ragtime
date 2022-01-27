@@ -72,10 +72,11 @@ a[data-toggle="collapse"] {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content {
-    width: 100%;
+#content, #navodila {
     min-height: 100vh;
     transition: all 0.3s;
+    max-width: fit-content;
+    min-width: fit-content;
 }
 
 #sidebarCollapse {
@@ -140,5 +141,7 @@ a[data-toggle="collapse"] {
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
-
+    #content, #navodila {
+        margin: auto;
+    }
 }

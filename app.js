@@ -49,7 +49,7 @@ function addDynamicPlayerHtml(playerName) {
 				</button>
 			 </div>
 		 </div>
-		<div id="remotePlayerPianoroll" class="row rounded-bottom bg-dark text-white">
+		<div id="remotePlayerPianoroll" class="row rounded-bottom bg-secondary text-white">
 			<div class="col">
 				<div id="remotePlayerDynamicPiano" data-participant-name="` + playerName + `" class="my-1 pianoroll"></div>
 			</div>
