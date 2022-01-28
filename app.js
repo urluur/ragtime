@@ -335,6 +335,7 @@ $(document).ready(function () {
 	- FEATURE_REQUEST: arpeggiator
 	- FEATURE_REQUEST: če držiš shift ti izpiše katera nota je to (by Patrik)
 	- FEATURE_REQUEST: ko igraš po posnetku ti prikaže noto in jo ne spusti dokler ti ne zaigraš iste, potem gre naprej
+	- FEATURE_REQUEST: pofejki to stran in any way possible
 	*/
 
 

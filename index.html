@@ -27,23 +27,20 @@
 
 	<script src="js/cookies.js"></script>
 
-	<script src="js/JZZ.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz-synth-tiny"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz-gui-select"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz-input-kbd"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz-midi-gm"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jzz-midi-smf"></script>
 
-	<!-- da imas lahko 'Web Audio' pri midi napravah -->
-	<script src="js/JZZ.synth.Tiny.js"></script>
-
-	<!-- dropdown menu za MIDI naprave -->
-	<script src="js/JZZ.gui.Select.js"></script>
-
-	<!-- pianoroll -->
-	<script src="js/JZZ.input.Kbd.js"></script>
-
-	<!-- glej loadAndChangeTo() in GmIdToName() -->
-	<script src="js/JZZ.midi.GM.js"></script>
-
-	<!-- za writanje MIDI fajlov -->
-	<script src="js/JZZ.midi.SMF.js"></script>
-
+	<!-- za writanje MIDI fajlov, for some reason je na cdnju drugacn-->
+	<!-- <script src="js/JZZ.midi.SMF.js"></script> -->
+	
+	<!-- tole je JZZ MIDIjs wrapper, glej var synth, ta je na cndju drugacn -->
+	<script src="js/JZZ.synth.MIDIjs.js"></script>
+	
+	<!-- mqtt server, če ga vzamem z cdnja ne dela -->
 	<script src="js/paho-mqtt.js"></script>
 
 	<!-- funny names generator :) -->
@@ -52,11 +49,10 @@
 	<!-- tale je native MIDIjs, glej loadAndChangeTo() oziroma MIDI.loadplugin -->
 	<script src="js/MIDI.js"></script>
 
-	<!-- tole je JZZ MIDIjs wrapper, glej var synth -->
-	<script src="js/JZZ.synth.MIDIjs.js"></script>
 
 	<script src="js/Base64.js" type="text/javascript"></script>
 	<script src="js/Base64binary.js" type="text/javascript"></script>
+
 	<script src="js/WebAudioAPI.js" type="text/javascript"></script>
 
 	<!-- metronom -->
