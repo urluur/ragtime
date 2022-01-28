@@ -47,7 +47,7 @@ function addDynamicPlayerHtml(playerName) {
 				<button type="button" class="btn btn-sm btn-secondary">
 					<span id="playerName">` + playerName + `</span> <span id="playerRtt" class="badge badge-light">0 ms</span>
 				</button>
-			 </div>
+			</div>
 		 </div>
 		<div id="remotePlayerPianoroll" class="row rounded-bottom bg-secondary text-white">
 			<div class="col">
