@@ -222,11 +222,16 @@ var responsivePianoOptions = {
 	bw: 10,
 	wl: 100,
 	bl: 70,
-	// from: 'A1', to: 'C8',
 	from: 'A1', to: 'C8',
-	// 530: {from: 'C3', to: 'B6'},
-	// 768: {from: 'D2', to: 'E7'},
-	// 992: {from: 'A1', to: 'C9'},
+	0:   { pos: 'W' },
+	320: { },
+	450: { from: 'A3', to: 'C7' },
+	620: { from: 'A2', to: 'C7' },
+	750: { from: 'A2', to: 'C8' },
+	880: { from: 'A1', to: 'C8' },
+	1000: { from:'A1', to: 'C9' },
+	1100: { from: 'A1', to: 'C8'},
+	1220: { from: 'A1', to: 'C9' }
 }
 
 var mainPianoOptions = {
@@ -330,7 +335,6 @@ $(document).ready(function () {
 	- FEATURE_REQUEST: arpeggiator
 	- FEATURE_REQUEST: če držiš shift ti izpiše katera nota je to (by Patrik)
 	- FEATURE_REQUEST: ko igraš po posnetku ti prikaže noto in jo ne spusti dokler ti ne zaigraš iste, potem gre naprej
-	- FEATURE_REQUEST: nared responsive keys nekje pod 860px https://jazz-soft.net/demo/Responsive.html
 	*/
 
 

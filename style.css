@@ -141,7 +141,11 @@ a[data-toggle="collapse"] {
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
+}
+
+@media (max-width: 1220px) {
     #content, #navodila {
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
