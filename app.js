@@ -32,6 +32,26 @@ function addToRecordingsList(author, name, b64dataz) {
 	// console.log(author, name, b64dataz);
 };
 
+function popraviSumnike(){
+	let elements = document.getElementsByClassName("popravi-sumnike");
+	console.log("To so elementi z sumniki");
+	console.log(elements);
+	[...elements].forEach(element => {
+		element.innerHTML = element.innerHTML.replaceAll("%C4%8D", "č");
+		element.innerHTML = element.innerHTML.replaceAll("%C5%A1", "š");
+		element.innerHTML = element.innerHTML.replaceAll("%C4%87", "ć");
+		element.innerHTML = element.innerHTML.replaceAll("%C4%91", "đ");
+		element.innerHTML = element.innerHTML.replaceAll("%C5%BE", "ž");
+		element.innerHTML = element.innerHTML.replaceAll("%C4%8C", "Č");
+		element.innerHTML = element.innerHTML.replaceAll("%C5%A0", "Š");
+		element.innerHTML = element.innerHTML.replaceAll("%C4%86", "Ć");
+		element.innerHTML = element.innerHTML.replaceAll("%C4%90", "Đ");
+		element.innerHTML = element.innerHTML.replaceAll("%C5%BD", "Ž");
+		element.innerHTML = element.innerHTML.replaceAll("%20", " ");
+		console.log("Lej provu sm ok???");
+	});
+}
+
 function addDynamicPlayerHtml(playerName) {
 	console.log('inside function: ' + arguments.callee.name);
 
@@ -44,8 +64,8 @@ function addDynamicPlayerHtml(playerName) {
 	<div id="remotePlayerDynamic" data-participant-name="` + playerName + `" class="container-fluid p-3">
 		<div id="remotePlayerStatusBar" class="row rounded-top bg-secondary text-white">
 			<div class="col">
-				<button type="button" class="btn btn-sm btn-secondary">
-					<span id="playerName">` + playerName + `</span> <span id="playerRtt" class="badge badge-light">0 ms</span>
+				<button type="button" class="btn btn-sm btn-secondary" onclick="popraviSumnike()">
+					<span id="playerName" class="popravi-sumnike">` + playerName + `</span> <span id="playerRtt" class="badge badge-light">0 ms</span>
 				</button>
 			</div>
 		 </div>
@@ -223,14 +243,13 @@ var responsivePianoOptions = {
 	wl: 100,
 	bl: 70,
 	from: 'A1', to: 'C8',
-	0:   { pos: 'W' },
-	320: { },
+	320: {},
 	450: { from: 'A3', to: 'C7' },
 	620: { from: 'A2', to: 'C7' },
 	750: { from: 'A2', to: 'C8' },
 	880: { from: 'A1', to: 'C8' },
-	1000: { from:'A1', to: 'C9' },
-	1100: { from: 'A1', to: 'C8'},
+	1000: { from: 'A1', to: 'C9' },
+	1100: { from: 'A1', to: 'C8' },
 	1220: { from: 'A1', to: 'C9' }
 }
 
@@ -335,7 +354,7 @@ $(document).ready(function () {
 	- FEATURE_REQUEST: arpeggiator
 	- FEATURE_REQUEST: če držiš shift ti izpiše katera nota je to (by Patrik)
 	- FEATURE_REQUEST: ko igraš po posnetku ti prikaže noto in jo ne spusti dokler ti ne zaigraš iste, potem gre naprej
-	- FEATURE_REQUEST: pofejki to stran in any way possible
+	- FEATURE_REQUEST: pofejki to stran in any way possible https://www.imusic-school.com/en/tools/piano-chords/
 	*/
 
 
@@ -374,6 +393,7 @@ $(document).ready(function () {
 
 	$('#myName').on('click', changeMyName);
 	$('#className').text(sessionName);
+	popraviSumnike();
 
 	// $('body').on('taphold', 'div#recordingsList > a', function (event) { 
 	// 	var myel = $(this)[0];
@@ -577,7 +597,11 @@ $(document).ready(function () {
 	}
 
 	function changeMyName() {
-		var myNewName = prompt('Type your nickname below', mojeIme);
+		let myNewName = '';
+		let newNameRegex = /^[a-zA-Z0-9_čšćđžČŠĆĐŽ]+( ?[a-zA-Z0-9_čšćđžČŠĆĐŽ]*)*$/;
+		do {
+			myNewName = prompt('Type your nickname below', mojeIme);
+		} while (!myNewName.match(newNameRegex))
 		if (myNewName === null || myNewName == '') {
 			return false;
 		} else {
@@ -585,6 +609,7 @@ $(document).ready(function () {
 			setCookie('mojeIme', myNewName, 3650);
 			showMyName(myNewName);
 			mojeIme = myNewName;
+			popraviSumnike();
 		}
 	}
 
