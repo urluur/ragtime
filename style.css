@@ -22,7 +22,6 @@ a, a:hover, a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,7 +72,6 @@ a[data-toggle="collapse"] {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content, #navodila {
-    min-height: 100vh;
     transition: all 0.3s;
     max-width: fit-content;
     min-width: fit-content;
@@ -96,6 +94,7 @@ a[data-toggle="collapse"] {
     transition-delay: 0.2s;
 }
 
+/* Animacija križca */
 #sidebarCollapse span:first-of-type {
     transform: rotate(45deg) translate(2px, 2px);
 }
@@ -149,3 +148,4 @@ a[data-toggle="collapse"] {
         margin-right: auto;
     }
 }
+

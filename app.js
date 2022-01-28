@@ -32,7 +32,7 @@ function addToRecordingsList(author, name, b64dataz) {
 	// console.log(author, name, b64dataz);
 };
 
-function popraviSumnike(){
+function popraviSumnike() {
 	let elements = document.getElementsByClassName("popravi-sumnike");
 	console.log("To so elementi z sumniki");
 	console.log(elements);

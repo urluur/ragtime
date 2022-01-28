@@ -36,10 +36,10 @@
 
 	<!-- za writanje MIDI fajlov, for some reason je na cdnju drugacn-->
 	<!-- <script src="js/JZZ.midi.SMF.js"></script> -->
-	
+
 	<!-- tole je JZZ MIDIjs wrapper, glej var synth, ta je na cndju drugacn -->
 	<script src="js/JZZ.synth.MIDIjs.js"></script>
-	
+
 	<!-- mqtt server, če ga vzamem z cdnja ne dela -->
 	<script src="js/paho-mqtt.js"></script>
 
@@ -103,9 +103,9 @@
 	<div id="mainContainer" class="wrapper">
 		<div id="sidebar" class="ps-2">
 			<!-- class name -->
-			<div id="classContainer" class="container-fluid p-3">
+			<div id="classContainer" class="container-fluid p-3 pb-0">
 				<div id="classBar" class="row rounded-top bg-secondary text-white">
-					<div class="col my-1">
+					<div class="col my-1 overflow-auto">
 						<span>Class name:</span>
 						<span id="className" class="popravi-sumnike"></span>
 					</div>
@@ -126,7 +126,7 @@
 
 
 			<!-- recordings -->
-			<div id="recordingsContainer" class="container p-3">
+			<div id="recordingsContainer" class="container p-3 pb-0">
 				<div id="recordingsBar" class="row rounded-top bg-secondary text-white">
 					<div class="col">
 						Recordings
@@ -145,7 +145,7 @@
 			</div>
 
 			<!-- settings -->
-			<div id="settingsContainer" class="container-fluid p-3">
+			<div id="settingsContainer" class="container-fluid p-3 pb-0">
 				<div id="settingsBar" class="row rounded-top bg-secondary text-white">
 					<div class="col my-1">
 						MIDI settings and controls
@@ -164,13 +164,12 @@
 
 						<!-- tuki bi lahko biu tak player?
 						https://jazz-soft.net/doc/JZZ/midiplayer.html -->
-
 					</div>
 				</div>
 			</div>
 
 			<!-- metronome -->
-			<div id="metronomeContainer" class="container p-3">
+			<div id="metronomeContainer" class="container p-3 pb-0">
 				<div id="metronomeBar" class="row rounded-top bg-secondary text-white">
 					<div class="col">
 						Metronome - <span id="metronomeMarking">Allegro</span>
@@ -194,7 +193,8 @@
 				<div id="mainPlayerStatusBar" class="row rounded-top bg-secondary text-white">
 					<div class="col">
 						<button type="button" class="btn btn-sm btn-secondary">
-							<span id="myName" class="popravi-sumnike">myName</span> <span id="myRtt" class="badge badge-light">0 ms</span>
+							<span id="myName" class="popravi-sumnike">myName</span> <span id="myRtt"
+								class="badge badge-light">0 ms</span>
 						</button>
 					</div>
 				</div>
