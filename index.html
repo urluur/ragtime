@@ -164,6 +164,14 @@
 
 						<!-- tuki bi lahko biu tak player?
 						https://jazz-soft.net/doc/JZZ/midiplayer.html -->
+
+						<form id="instruments">
+							<select name="Select instrument" id="select_instruments">
+								<option value="acoustic_grand_piano">acoustic grand piano</option>
+							</select>
+						</form>
+						<script src="js/sounds.js"></script>
+						<button onclick="applySound()" type="button" class="btn btn-primary btn-sm">Apply sounds</button>
 					</div>
 				</div>
 			</div>
@@ -229,10 +237,10 @@
 
 	<!-- navodila -->
 	<div class="modal fade" id="navodila" tabindex="-1" aria-labelledby="navodila" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Help</h5>
+					<h5 class="modal-title" id="help_modal">Help</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
@@ -256,9 +264,12 @@
 						By <span class="text-success">recording</span> the masterpiece you play it will instantly make
 						it permanently available for others
 						joining this session at any time. They can playback and observe keystrokes you made so be
-						expressive for others that will learn from you :) Just hit <span class="text-danger">Record</span> button and start playing.
-						After you finish hit <span class="text-danger">Record</span> again or <span class="text-danger">Stop</span>. MIDI file will
-						also became downloadable but there is a catch; BPM is fixed to 120 and it will stay like that until we implement metronome.
+						expressive for others that will learn from you :) Just hit <span
+							class="text-danger">Record</span> button and start playing.
+						After you finish hit <span class="text-danger">Record</span> again or <span
+							class="text-danger">Stop</span>. MIDI file will
+						also became downloadable but there is a catch; BPM is fixed to 120 and it will stay like that
+						until we implement metronome.
 					</p>
 
 				</div>

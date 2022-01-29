@@ -209,6 +209,13 @@ function loadAndChangeTo(instrumentName) {
 
 loadAndChangeTo('acoustic_grand_piano');
 
+function applySound(){
+	let sound = document.getElementById("select_instruments").value;
+	console.log("Na to bomo spremenil.......");
+	console.log(sound);
+	loadAndChangeTo(sound);
+}
+
 function GmIdToName(numeric) {
 	var instrumentName = MIDI.GM.byId[numeric].id;
 	loadAndChangeTo(instrumentName);
