@@ -148,3 +148,7 @@ a[data-toggle="collapse"] {
       flex-direction: column;
     }
   }
+
+#learn {
+    max-width: 981px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
+}

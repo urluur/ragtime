@@ -73,11 +73,10 @@ function addDynamicPlayerHtml(playerName) {
 		</div>
 	</div>
 
-		`;
+	`;
 
-	// $('#mainContainer').append(newPlayerHtml);
 	$('#klaviature').append(newPlayerHtml);
-
+	
 	// https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 	var domElement = $('#remotePlayerDynamicPiano[data-participant-name="' + playerName + '"]')[0];
 
@@ -211,8 +210,6 @@ loadAndChangeTo('acoustic_grand_piano');
 
 function applySound(){
 	let sound = document.getElementById("select_instruments").value;
-	console.log("Na to bomo spremenil.......");
-	console.log(sound);
 	loadAndChangeTo(sound);
 }
 
