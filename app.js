@@ -34,8 +34,6 @@ function addToRecordingsList(author, name, b64dataz) {
 
 function popraviSumnike() {
 	let elements = document.getElementsByClassName("popravi-sumnike");
-	console.log("To so elementi z sumniki");
-	console.log(elements);
 	[...elements].forEach(element => {
 		element.innerHTML = element.innerHTML.replaceAll("%C4%8D", "č");
 		element.innerHTML = element.innerHTML.replaceAll("%C5%A1", "š");
@@ -48,7 +46,6 @@ function popraviSumnike() {
 		element.innerHTML = element.innerHTML.replaceAll("%C4%90", "Đ");
 		element.innerHTML = element.innerHTML.replaceAll("%C5%BD", "Ž");
 		element.innerHTML = element.innerHTML.replaceAll("%20", " ");
-		console.log("Lej provu sm ok???");
 	});
 }
 
@@ -485,7 +482,7 @@ $(document).ready(function () {
 	// pianoOut = JZZ.input.Kbd({ at:'pianoOut_space', ...mainPianoOptions });
 
 	JZZ.input.ASCII({
-		2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
+		at: 'pianoIn_space', 2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
 		Q: 'C5', W: 'D5', E: 'E5', R: 'F5', T: 'G5', Y: 'A5', U: 'B5', I: 'C6', O: 'D6',
 		P: 'E6', '[': 'F6', ']': 'G6', S: 'C#4', D: 'D#4', G: 'F#4', H: 'G#4', J: 'A#4',
 		L: 'C#5', ':': 'D#5', Z: 'C4', X: 'D4', C: 'E4', V: 'F4', B: 'G4', N: 'A4', M: 'B4',
