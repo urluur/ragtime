@@ -599,7 +599,7 @@ $(document).ready(function () {
 
 	function changeMyName() {
 		let myNewName = '';
-		let newNameRegex = /^[a-zA-Z0-9_čšćđžČŠĆĐŽ]+( ?[a-zA-Z0-9_čšćđžČŠĆĐŽ]*)*$/;
+		let newNameRegex = /^[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}( ?[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}){0,3}$/;
 		do {
 			myNewName = prompt('Type your nickname below', mojeIme);
 		} while (!myNewName.match(newNameRegex))
