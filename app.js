@@ -79,7 +79,7 @@ function addDynamicPlayerHtml(playerName) {
 		`;
 
 	// $('#mainContainer').append(newPlayerHtml);
-	$('#content').append(newPlayerHtml);
+	$('#klaviature').append(newPlayerHtml);
 
 	// https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 	var domElement = $('#remotePlayerDynamicPiano[data-participant-name="' + playerName + '"]')[0];

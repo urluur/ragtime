@@ -36,10 +36,6 @@ a, a:hover, a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-.wrapper {
-    display: flex;
-}
-
 #sidebar {
     min-width: 220px;
     max-width: 220px;
@@ -71,7 +67,7 @@ a[data-toggle="collapse"] {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content, #navodila {
+#klaviature {
     transition: all 0.3s;
     max-width: fit-content;
     min-width: fit-content;
@@ -143,7 +139,7 @@ a[data-toggle="collapse"] {
 }
 
 @media (max-width: 1220px) {
-    #content, #navodila {
+    #klaviature {
         margin-left: auto;
         margin-right: auto;
     }

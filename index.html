@@ -77,30 +77,30 @@
 				<i class="fas fa-align-justify"></i>
 			</button>
 
-			<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="nav navbar-nav ml-auto">
-					<li class="nav-item active">
-
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Learn</a>
+					<li class="nav-item">
+						<button class="btn nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#learn"
+							aria-expanded="false" aria-controls="learn">
+							Learn
+						</button>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Play</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Game</a>
+						<button class="btn nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#game"
+							aria-expanded="false" aria-controls="game">
+							Game
+						</button>
 					</li>
 				</ul>
 				<div class="pe-2"></div>
 				<div class="pb-2"></div>
-				<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navodila" aria-expanded="false" aria-controls="navodila">Help</button>
+				<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
+					data-bs-target="#navodila">Help</button>
 			</div>
 		</div>
 	</nav>
 
-	<div id="mainContainer" class="wrapper">
+	<div id="mainContainer" class="d-flex">
 		<div id="sidebar" class="ps-2">
 			<!-- class name -->
 			<div id="classContainer" class="container-fluid p-3 pb-0">
@@ -123,7 +123,6 @@
 					</div>
 				</div>
 			</div>
-
 
 			<!-- recordings -->
 			<div id="recordingsContainer" class="container p-3 pb-0">
@@ -187,7 +186,10 @@
 				</div>
 			</div>
 		</div>
-		<div id="content" class="ps-2">
+		<!-- <div> -->
+		<!-- mal navodil -->
+
+		<div id="klaviature" class="ps-1">
 			<!-- tole je za lokalnega userja, da vidis sam sebe -->
 			<div id="mainPlayer" class="container-fluid p-3">
 				<div id="mainPlayerStatusBar" class="row rounded-top bg-secondary text-white">
@@ -204,50 +206,67 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<!-- </div> -->
+	</div> <!-- id=mainContainer -->
 
-			<!-- mal navodil -->
-			<div id="navodila" class="container p-3 collapse">
-				<div class="rounded-top row p-3 bg-secondary text-white">
-					MIDI IN - choose device you will be playing on.
-					Your keystrokes will be displayed on first pianoroll. Click on pianoroll name to change it.
-					Others joining this session will see you by that name as you will see separate pianoroll for
-					each participant.
-					In case you dont have any MIDI devices attached you can play on QWERTY keyboard by choosing
-					'HTML Piano In'.
-					If you just want to observe and listen then only choose MIDI OUT device.
+	<!-- navodila -->
+	<div class="modal fade" id="navodila" tabindex="-1" aria-labelledby="navodila" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Help</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="row p-3 bg-secondary text-white">
-					MIDI OUT - how do you want keystrokes from others to be played.
-					Keystrokes from others will also be shown and played on separate pianorolls for each
-					participant.
-					If you just want to listen choose 'Web Audio' and enjoy when others play :)
+				<div class="modal-body">
+					<p>
+						MIDI IN - choose device you will be playing on.
+						Your keystrokes will be displayed on first pianoroll. Click on pianoroll name to change it.
+						Others joining this session will see you by that name as you will see separate pianoroll for
+						each participant.
+						In case you dont have any MIDI devices attached you can play on QWERTY keyboard by choosing
+						'HTML Piano In'.
+						If you just want to observe and listen then only choose MIDI OUT device.
+					</p>
+					<p>
+						MIDI OUT - how do you want keystrokes from others to be played.
+						Keystrokes from others will also be shown and played on separate pianorolls for each
+						participant.
+						If you just want to listen choose 'Web Audio' and enjoy when others play :)
+					</p>
+					<p>
+						By recording the masterpiece you play it will instantly make it permanently available for others
+						joining this session at any time. They can playback and observe keystrokes you made so be
+						expressive for others that will learn from you :) Just hit Record button and start playing.
+						After you finish hit Record again or Stop. MIDI file will also became downloadable but there is
+						a catch; BPM is fixed to 120 and it will stay like that until we implement metronome.
+					</p>
+
 				</div>
-				<div class="rounded-bottom row p-3 bg-secondary text-white">
-					By recording the masterpiece you play it will instantly make it permanently available for others
-					joining this session at any time. They can playback and observe keystrokes you made so be
-					expressive for others that will learn from you :) Just hit Record button and start playing.
-					After you finish hit Record again or Stop. MIDI file will also became downloadable but there is
-					a catch; BPM is fixed to 120 and it will stay like that until we implement metronome.
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div> <!-- id=mainContainer -->
+	</div>
+	<!-- ostale skripte -->
+	<div>
+		<script src="app.js"></script>
 
-	<script src="app.js"></script>
+		<!--bootstrap 5-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
 
-	<!--bootstrap 5-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('#sidebarCollapse').on('click', function () {
-				$('#sidebar').toggleClass('active');
-				$(this).toggleClass('active');
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#sidebarCollapse').on('click', function () {
+					$('#sidebar').toggleClass('active');
+					$(this).toggleClass('active');
+				});
 			});
-		});
-	</script>
+		</script>
+	</div>
 </body>
 
 </html>
