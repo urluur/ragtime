@@ -9,7 +9,10 @@ function Base64ToSmfPlayer() {
 }
 
 function promptAndReturnString(message, value = '') {
-	var answer = prompt(message, value);
+	let regex = /^[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}( ?[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}){0,3}$/;
+	do {
+		var answer = prompt(message, value);
+	} while (!answer.match(regex));
 	if (answer === null || answer == '') {
 		return false;
 	} else {
@@ -109,7 +112,7 @@ function copyShareUrlToClipboard() {
 }
 
 function promptAndJoinSession() {
-	var newSessionName = prompt('Type session name', '');
+	var newSessionName = promptAndReturnString('Type session name', '');
 	if (newSessionName === null || newSessionName == '') {
 		return false;
 	} else {
@@ -615,11 +618,7 @@ $(document).ready(function () {
 	}
 
 	function changeMyName() {
-		let myNewName = '';
-		let newNameRegex = /^[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}( ?[a-zA-Z0-9_čšćđžČŠĆĐŽ]{1,10}){0,3}$/;
-		do {
-			myNewName = prompt('Type your nickname below', mojeIme);
-		} while (!myNewName.match(newNameRegex))
+		let myNewName = promptAndReturnString('Type your nickname below', mojeIme);
 		if (myNewName === null || myNewName == '') {
 			return false;
 		} else {
