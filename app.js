@@ -99,8 +99,6 @@ function addDynamicPlayerHtml(playerName) {
 		console.trace();
 		return false;
 	}
-	requiredInstruments[playerName] = 'acoustic_grand_piano'; // to je samo placeholder pol se zbriše
-	// tuki ko nekdo pride na novo rabi sam sporočit svoje ime in instrument
 	return true;
 }
 
@@ -130,7 +128,7 @@ function isValidParticipant(user) {
 }
 
 function isValidParticipantPiano(user) {
-	// console.log('inside function: ' + arguments.callee.name);65
+	// console.log('inside function: ' + arguments.callee.name);
 	return typeof (participants[user]['piano'] !== 'undefined') ? true : false;
 }
 
@@ -196,7 +194,6 @@ JZZ.MIDI.prototype.isNoteEvent = function () {
 	return this[1] >= 0;
 };
 
-// * Stop using this
 JZZ.MIDI.prototype.isProgramChangeEvent = function () {
 	var c = this[0];
 	if (typeof c == 'undefined' || c < 0xc0 || c > 0xcf)
@@ -400,7 +397,6 @@ $(document).ready(function () {
 	/**
 	 * TODO: loadAndChangeTo needs an alternative
 	 * - Changes to your selected instrument in "#select_instruments" form
-	 * - Saves your instrument in requiredInstruments
 	 */
 	function applySound() {
 		$('#check_spin').empty();
@@ -410,10 +406,7 @@ $(document).ready(function () {
 			</div>
 		`;
 		$('#check_spin').append(spin);
-		let selected_instrument = document.getElementById("select_instruments").value;
-		requiredInstruments[myName] = selected_instrument;
 		loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
-		publishMyPcn(myName + ':' + selected_instrument);
 	}
 
 	// get/set session name
@@ -441,8 +434,6 @@ $(document).ready(function () {
 	myName = getCookie('mojeIme') || randomName();
 
 	loadAndChangeTo('acoustic_grand_piano'); // deprecated?
-	requiredInstruments[myName] = 'acoustic_grand_piano';
-	// tuki posljemo svoje ime in instrument
 
 	setCookie('mojeIme', myName, 3650);
 	showMyName(myName);
@@ -684,7 +675,6 @@ $(document).ready(function () {
 	/**
 	 * * Prompts user for a new name
 	 * - Changes user's name
-	 * - Saves user's name and instrument to requiredInstruments
 	 * @returns True on success | False on fail 
 	 */
 	function changeMyName() {
@@ -695,7 +685,6 @@ $(document).ready(function () {
 			myNewName = encodeURI(myNewName);
 			setCookie('mojeIme', myNewName, 3650);
 			showMyName(myNewName);
-			requiredInstruments[myNewName] = requiredInstruments[myName];
 			delete requiredInstruments[myName];
 			// tuki je treba poslat svoje ime in instrument ker je kot da smo prsli na novo
 			myName = myNewName;
@@ -725,24 +714,18 @@ $(document).ready(function () {
 		mqttPub(tNoteEvents, msg);
 	}
 
-	//* Od Markota pcn??
-	// function publishMyPcn(jmidi) {
-	// 	msg = myName + ':' + jmidi[0] + ',' + jmidi[1];
-	// 	mqttPub(tPcnEvents, msg);
-	// }
-	function publishMyPcn(name_plays_instrument) {
-		console.log("ime in ionstrument:" + name_plays_instrument);
-		mqttPub(tPcnEvents, name_plays_instrument);
-		console.log("Uspelo ti je!");
+	//* Od Markota pcn
+	function publishMyPcn(jmidi) {
+		msg = myName + ':' + jmidi[0] + ',' + jmidi[1];
+		mqttPub(tPcnEvents, msg);
 	}
 
 	/**
 	 * Sends a message to MQTT server.
 	 * @param {*} topic - Topics on the MQTT server:
 	 * - tMidiSessions (MIDI Recordings)
-	 * - tNoteEvents (jmidi information when a key is pressed)
+	 * - tNoteEvents (Information when a key is pressed)
 	 * - tPcnEvents (Information about instrument change)
-	 * - (tRTT (Delay, recieve only))
 	 * @param {string} payload - Message sent over MQTT
 	 * @param {bool} retained - The broker stores the last retained message and the corresponding QoS for that topic.
 	 */
@@ -957,7 +940,7 @@ $(document).ready(function () {
 			}
 		}
 
-		//* Od Markota pcn?
+		//* Od Markota pcn.. zdi se mi da ko spremeniš inštrument ubistvu sploh ne spremeniš programa, ker ta stvar se nikoli ne pošlje
 		// MIDI program change messages 0xc0 .. 0xcf
 		else if (program = jmidi.isProgramChangeEvent()) {
 			output.program(0, jmidi[1]);
@@ -1054,6 +1037,7 @@ $(document).ready(function () {
 		client.subscribe(tNoteEvents);
 		client.subscribe(tRTT);
 		client.subscribe(tMidiSessions + '/+');
+		client.subscribe(tPcnEvents);
 
 		// RTT timer
 		initRttTimer();
@@ -1227,9 +1211,9 @@ $(document).ready(function () {
 				}
 			}
 		}
-		//* moj pcn receive 😁😁 
+		//* moj pcn receive
 		else if (message.destinationName == tPcnEvents) {
-			console.log("Zares ti je uspelo!");
+			console.log("Dobil si tPcnEvent: (spodaj)");
 			console.log(message);
 		}
 		// RTT probe received
@@ -1240,7 +1224,6 @@ $(document).ready(function () {
 		}
 		// midi session received
 		else if (message.destinationName.startsWith(tMidiSessions)) {
-			console.log("You recieved a tMidiSessions!");
 			// topic=mididerp/sessions/alternativePaganini4/midiSessions/onlySession1
 			// payload=tranceWagner53:TVRoZAAAAAYAAAABAGBNVHJrAAAASwD/UQMHoSAAkCR/EYAkahOQJH8YgCRSFZAmfxOAJk8UkCR/F4AkZxeQJ38VgCdaEZAkfxeAJGoSkCl/GYApTRGQJ38UgCdqS/8vAA==
 
