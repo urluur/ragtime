@@ -244,25 +244,6 @@ function loadAndChangeTo(instrumentName) {
 	});
 }
 
-/**
- * TODO: loadAndChangeTo needs an alternative
- * - Changes to your selected instrument in "#select_instruments" form
- * - Saves your instrument in requiredInstruments
- */
-function applySound() {
-	$('#check_spin').empty();
-	let spin = `
-	<div class="spinner-border spinner-border-sm me-1" role="status">
-		<span class="sr-only">Loading...</span>
-	</div>
-	`;
-	$('#check_spin').append(spin);
-	let selected_instrument = document.getElementById("select_instruments").value;
-	requiredInstruments[myName] = selected_instrument;
-	loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
-	console.log(publishMyPcn(myName + ':' + selected_instrument));
-}
-
 function GmIdToName(numeric) {
 	var instrumentName = MIDI.GM.byId[numeric].id;
 	loadAndChangeTo(instrumentName);
@@ -416,7 +397,24 @@ $(document).ready(function () {
 	- FEATURE_REQUEST: pofejki to stran in any way possible https://www.imusic-school.com/en/tools/piano-chords/
 	*/
 
-
+	/**
+	 * TODO: loadAndChangeTo needs an alternative
+	 * - Changes to your selected instrument in "#select_instruments" form
+	 * - Saves your instrument in requiredInstruments
+	 */
+	function applySound() {
+		$('#check_spin').empty();
+		let spin = `
+			<div class="spinner-border spinner-border-sm me-1" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		`;
+		$('#check_spin').append(spin);
+		let selected_instrument = document.getElementById("select_instruments").value;
+		requiredInstruments[myName] = selected_instrument;
+		loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
+		publishMyPcn(myName + ':' + selected_instrument);
+	}
 
 	// get/set session name
 	var [url, sessionName] = window.location.href.split('#');
@@ -454,6 +452,7 @@ $(document).ready(function () {
 	$('#midiPlayerPlay').click(midiPlayerPlay);
 	$('#midiSessionRecord').click(midiSessionToggle);
 	$('#midiSessionPublish').click(midiSessionPublish);
+	$('#apply_instrument_btn').click(applySound);
 
 	$('#myName').on('click', changeMyName);
 	$('#className').text(decodeURI(sessionName));
@@ -731,6 +730,11 @@ $(document).ready(function () {
 	// 	msg = myName + ':' + jmidi[0] + ',' + jmidi[1];
 	// 	mqttPub(tPcnEvents, msg);
 	// }
+	function publishMyPcn(name_plays_instrument) {
+		console.log("ime in ionstrument:" + name_plays_instrument);
+		mqttPub(tPcnEvents, name_plays_instrument);
+		console.log("Uspelo ti je!");
+	}
 
 	/**
 	 * Sends a message to MQTT server.
@@ -750,7 +754,6 @@ $(document).ready(function () {
 			client.send(message);
 		}
 	}
-
 
 	function sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
@@ -956,12 +959,12 @@ $(document).ready(function () {
 
 		//* Od Markota pcn?
 		// MIDI program change messages 0xc0 .. 0xcf
-		// else if (program = jmidi.isProgramChangeEvent()) {
-		// 	output.program(0, jmidi[1]);
-		// 	if (sendProgramChangeEvents) {
-		// 		publishMyPcn(jmidi);
-		// 	}
-		// }
+		else if (program = jmidi.isProgramChangeEvent()) {
+			output.program(0, jmidi[1]);
+			if (sendProgramChangeEvents) {
+				publishMyPcn(jmidi);
+			}
+		}
 
 		else {
 			var data = jmidi[0];
@@ -1226,6 +1229,7 @@ $(document).ready(function () {
 		}
 		//* moj pcn receive 😁😁 
 		else if (message.destinationName == tPcnEvents) {
+			console.log("Zares ti je uspelo!");
 			console.log(message);
 		}
 		// RTT probe received
