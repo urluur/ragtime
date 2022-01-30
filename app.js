@@ -72,8 +72,8 @@ function addDynamicPlayerHtml(playerName) {
 		console.trace();
 	}
 
-	requiredInstruments[playerName] = 'acoustic_grand_piano';
-	// tuki je treba poslat requiredInstruments
+	requiredInstruments[playerName] = 'acoustic_grand_piano'; // to je samo placeholder pol se zbriše
+	// tuki ko nekdo pride na novo rabi sam sporočit svoje ime in instrument
 }
 
 function removeDynamicPlayerHtml(playerName) {
@@ -223,7 +223,7 @@ function applySound() {
 	$('#check_spin').append(spin);
 	requiredInstruments[mojeIme] = document.getElementById("select_instruments").value;
 	loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
-	// tuki je treba poslat requiredInstruments
+	// tuki je treba poslat svoje ime in instrument ker smo si manualno spremenili instrument
 }
 
 function GmIdToName(numeric) {
@@ -399,6 +399,7 @@ $(document).ready(function () {
 
 	loadAndChangeTo('acoustic_grand_piano'); // deprecated?
 	requiredInstruments[mojeIme] = 'acoustic_grand_piano';
+	// tuki posljemo svoje ime in instrument
 
 	setCookie('mojeIme', mojeIme, 3650);
 	showMyName(mojeIme);
@@ -627,7 +628,7 @@ $(document).ready(function () {
 			showMyName(myNewName);
 			requiredInstruments[myNewName] = requiredInstruments[mojeIme];
 			delete requiredInstruments[mojeIme];
-			// tuki je treba poslat requiredInstruments
+			// tuki je treba poslat svoje ime in instrument ker je kot da smo prsli na novo
 			mojeIme = myNewName;
 		}
 	}
