@@ -28,31 +28,14 @@ function addToRecordingsList(author, name, b64dataz) {
 	var itemName = author + ' - ' + name;
 
 	var uri = 'data:audio/midi;base64,' + b64dataz; // data URI
-	$("#recordingsList").append('<a data-recording-author="' + author + '" data-recording-name="' + name + '" class="list-group-item list-group-item-action" data-toggle="list" href="' + uri + '">' + itemName + '</a>');
+	$("#recordingsList").append('<a data-recording-author="' + author + '" data-recording-name="' + name + '" class="list-group-item list-group-item-action p-2 mb-2" data-toggle="list" href="' + uri + '">' + itemName + '</a>');
 	// console.log(author, name, b64dataz);
 };
-
-function popraviSumnike() {
-	let elements = document.getElementsByClassName("popravi-sumnike");
-	[...elements].forEach(element => {
-		element.innerHTML = element.innerHTML.replaceAll("%C4%8D", "č");
-		element.innerHTML = element.innerHTML.replaceAll("%C5%A1", "š");
-		element.innerHTML = element.innerHTML.replaceAll("%C4%87", "ć");
-		element.innerHTML = element.innerHTML.replaceAll("%C4%91", "đ");
-		element.innerHTML = element.innerHTML.replaceAll("%C5%BE", "ž");
-		element.innerHTML = element.innerHTML.replaceAll("%C4%8C", "Č");
-		element.innerHTML = element.innerHTML.replaceAll("%C5%A0", "Š");
-		element.innerHTML = element.innerHTML.replaceAll("%C4%86", "Ć");
-		element.innerHTML = element.innerHTML.replaceAll("%C4%90", "Đ");
-		element.innerHTML = element.innerHTML.replaceAll("%C5%BD", "Ž");
-		element.innerHTML = element.innerHTML.replaceAll("%20", " ");
-	});
-}
 
 function addDynamicPlayerHtml(playerName) {
 	console.log('inside function: ' + arguments.callee.name);
 
-	if (playerName == mojeIme) {
+	if (playerName == mojeIme) { // NEEDFIX: naj preveri še usa ostala imena v partiju
 		return false;
 	}
 
@@ -61,8 +44,8 @@ function addDynamicPlayerHtml(playerName) {
 	<div id="remotePlayerDynamic" data-participant-name="` + playerName + `" class="container-fluid p-3">
 		<div id="remotePlayerStatusBar" class="row rounded-top bg-secondary text-white">
 			<div class="col">
-				<button type="button" class="btn btn-sm btn-secondary" onclick="popraviSumnike()">
-					<span id="playerName" class="popravi-sumnike">` + playerName + `</span> <span id="playerRtt" class="badge badge-light">0 ms</span>
+				<button type="button" class="btn btn-sm btn-secondary">
+					<span id="playerName">` + decodeURI(playerName) + `</span> <span id="playerRtt" class="badge badge-light">0 ms</span>
 				</button>
 			</div>
 		 </div>
@@ -76,7 +59,7 @@ function addDynamicPlayerHtml(playerName) {
 	`;
 
 	$('#klaviature').append(newPlayerHtml);
-	
+
 	// https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 	var domElement = $('#remotePlayerDynamicPiano[data-participant-name="' + playerName + '"]')[0];
 
@@ -89,7 +72,8 @@ function addDynamicPlayerHtml(playerName) {
 		console.trace();
 	}
 
-
+	requiredInstruments[playerName] = 'acoustic_grand_piano';
+	// tuki je treba poslat requiredInstruments
 }
 
 function removeDynamicPlayerHtml(playerName) {
@@ -150,6 +134,7 @@ var lastMidi;
 var jmidi2;
 
 var participants = {};
+var requiredInstruments = {};
 
 var input;
 var output;
@@ -202,15 +187,43 @@ function loadAndChangeTo(instrumentName) {
 			console.log("loadAndChangeTo onsuccess: " + instrumentName);
 			MIDI.setVolume(0, 127);
 			MIDI.programChange(0, MIDI.GM.byName[instrumentName].number);
+			let check = `<i class="bi bi-check-lg me-1"></i>`;
+			$('#check_spin').empty();
+			$('#check_spin').append(check);
 		}
 	});
 }
 
-loadAndChangeTo('acoustic_grand_piano');
+function loadRequiredInstruments(required_instruments) {
 
-function applySound(){
-	let sound = document.getElementById("select_instruments").value;
-	loadAndChangeTo(sound);
+	// NEEDFIX: to tuki bo najbl vrjetno foreach iz useh participants in njihovih requiredInstruments kjer bo za vsakega nardilo novo instanco
+
+	MIDI.loadPlugin({
+		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
+		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FatBoy/",
+		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/MusyngKite/",
+		instruments: required_instruments,
+		onprogress: function (state, progress) {
+			console.log(state, progress);
+		},
+		onsuccess: function () {
+			console.log("loadAndChangeTo onsuccess: " + required_instruments);
+			MIDI.setVolume(0, 127);
+		}
+	});
+}
+
+function applySound() {
+	$('#check_spin').empty();
+	let spin = `
+	<div class="spinner-border spinner-border-sm me-1" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+	`;
+	$('#check_spin').append(spin);
+	requiredInstruments[mojeIme] = document.getElementById("select_instruments").value;
+	loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
+	// tuki je treba poslat requiredInstruments
 }
 
 function GmIdToName(numeric) {
@@ -383,6 +396,10 @@ $(document).ready(function () {
 	}
 
 	mojeIme = getCookie('mojeIme') || randomName();
+
+	loadAndChangeTo('acoustic_grand_piano'); // deprecated?
+	requiredInstruments[mojeIme] = 'acoustic_grand_piano';
+
 	setCookie('mojeIme', mojeIme, 3650);
 	showMyName(mojeIme);
 
@@ -393,8 +410,7 @@ $(document).ready(function () {
 	$('#midiSessionPublish').click(midiSessionPublish);
 
 	$('#myName').on('click', changeMyName);
-	$('#className').text(sessionName);
-	popraviSumnike();
+	$('#className').text(decodeURI(sessionName));
 
 	// $('body').on('taphold', 'div#recordingsList > a', function (event) { 
 	// 	var myel = $(this)[0];
@@ -609,13 +625,15 @@ $(document).ready(function () {
 			myNewName = encodeURI(myNewName);
 			setCookie('mojeIme', myNewName, 3650);
 			showMyName(myNewName);
+			requiredInstruments[myNewName] = requiredInstruments[mojeIme];
+			delete requiredInstruments[mojeIme];
+			// tuki je treba poslat requiredInstruments
 			mojeIme = myNewName;
-			popraviSumnike();
 		}
 	}
 
 	function showMyName(name) {
-		$('#myName').text(name);
+		$('#myName').text(decodeURI(name));
 	}
 
 	function publishMyNote(jmidi) {
@@ -653,12 +671,12 @@ $(document).ready(function () {
 			jmidi = JZZ.MIDI.noteOn(0, note, 127);
 			midiHandler(jmidi);
 
-			await sleep(20);
+			await sleep(15);
 
 			jmidi = JZZ.MIDI.noteOff(0, note, 127);
 			setTimeout(midiHandler, 15, jmidi);
 
-			//await sleep(5);
+			await sleep(40);
 
 		}
 	}
@@ -993,6 +1011,7 @@ $(document).ready(function () {
 			if (Date.now() - participants[user]['lastUpdate'] > 5000) {
 				removeDynamicPlayerHtml(user);
 				delete participants[user];
+				delete requiredInstruments[user];
 			} else if (Date.now() - participants[user]['lastUpdate'] > 1500) {
 				participants[user]['rtt'] = 'stale';
 			}

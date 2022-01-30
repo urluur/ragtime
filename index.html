@@ -108,7 +108,7 @@
 				<div id="classBar" class="row rounded-top bg-secondary text-white">
 					<div class="col my-1 overflow-auto">
 						<span>Class name:</span>
-						<span id="className" class="popravi-sumnike"></span>
+						<span id="className"></span>
 					</div>
 				</div>
 				<div id="classMain" class="row rounded-bottom bg-light">
@@ -136,10 +136,21 @@
 					<div class="col p-3">
 						<div id="recordingsList" class="list-group">
 						</div>
-						<a class="btn btn-info btn-sm text-white" href="#" role="button" id="midiFileOut">
+						<button class="btn btn-info btn-sm text-white" role="button" id="midiFileOut">
 							<i class="bi bi-file-earmark-music-fill"></i>
+							<!--zaenkrat ne nardi še nč?-->
 							Select a recording
-						</a>
+						</button>
+						<div class="mt-2">
+							<div class="btn-group" role="group" aria-label="Playback controls">
+								<button type="button" class="btn btn-outline-dark" id=midiPlayerStop><i
+										class="fas fa-stop"></i></button>
+								<button type="button" class="btn btn-outline-dark" id=midiPlayerPlay><i
+										class="fas fa-play"></i></button>
+								<button type="button" class="btn btn-outline-danger" id=midiSessionRecord><i
+										class="fas fa-circle"></i></button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -153,25 +164,27 @@
 				</div>
 				<div id="settingsMain" class="row rounded-bottom bg-light text-dark">
 					<div class="col p-3">
-						MIDI IN <select id="sel_in"></select><br>
-						MIDI OUT <select id="sel_out"></select><br>
-						<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerStop><i
-								class="fas fa-stop"></i> Stop</button>
-						<button type="button" class="my-1 btn btn-outline-dark btn-sm" id=midiPlayerPlay><i
-								class="fas fa-play"></i> Play</button>
-						<button type="button" class="my-1 btn btn-outline-danger btn-sm" id=midiSessionRecord><i
-								class="fas fa-circle"></i> Record</button><br>
+						<div>
+							<select class="form-select form-select-sm" id="select_instruments">
+							</select>
+							<script src="js/sounds.js"></script>
+							<button onclick="applySound()" type="button" class="btn btn-primary btn-sm mt-1 mb-1">
+								<span id="check_spin"><i class="bi bi-check-lg me-1"></i>
+								</span> Change sounds
+							</button>
+						</div>
+						<div class="mt-1">
+							MIDI IN
+							<select class="form-select form-select-sm" id="sel_in"></select>
+						</div>
+						<div class="mt-1">
+							MIDI OUT
+							<select class="form-select form-select-sm" id="sel_out"></select>
+						</div>
 
 						<!-- tuki bi lahko biu tak player?
 						https://jazz-soft.net/doc/JZZ/midiplayer.html -->
 
-						<form id="instruments">
-							<select name="Select instrument" id="select_instruments">
-								<option value="acoustic_grand_piano">acoustic grand piano</option>
-							</select>
-						</form>
-						<script src="js/sounds.js"></script>
-						<button onclick="applySound()" type="button" class="btn btn-primary btn-sm">Apply sounds</button>
 					</div>
 				</div>
 			</div>
@@ -198,9 +211,25 @@
 		<nav id="content" class="ps-2">
 			<div id="learn" class="collapse">
 				<div class="row m-2 p-2 me-3 mt-3 ms-1 bg-white rounded h-auto">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nobis at tempora quibusdam facere blanditiis? Iure expedita, ipsa totam natus accusamus rerum quibusdam fuga facere ab rem minima? Sapiente deserunt voluptatum obcaecati sed voluptatem minima culpa labore molestias eaque velit quibusdam quis, alias id ratione? Veritatis rem, at molestias mollitia esse, illo maiores in pariatur dignissimos a odit. Laboriosam reprehenderit blanditiis magni optio vel molestiae quam! Incidunt consequuntur, rerum dicta nesciunt mollitia ea reiciendis et quasi iste magni commodi, quia nam ipsum qui. Veritatis rem, nam dicta optio, earum nisi hic aliquid beatae enim possimus aliquam cupiditate neque, expedita libero est blanditiis atque iure dolor incidunt odit deserunt necessitatibus architecto! Beatae, ipsam quia perspiciatis obcaecati voluptatum quam autem odit mollitia doloribus vero exercitationem id recusandae voluptatibus distinctio sint, minus similique dolores. A rem eum ratione excepturi quis nesciunt officia saepe accusamus necessitatibus voluptatem dolor fugit at, pariatur assumenda reprehenderit neque corporis eius, ut vel exercitationem quos fuga repudiandae? Tempora vero dolore assumenda. Quod quas ea magni. Fugit iusto ipsa totam nostrum, dolores deserunt error recusandae consequatur dicta optio maiores iure, nisi provident! Magnam omnis non neque esse molestiae id aspernatur! Quae amet minus iure eos saepe deserunt, veritatis corrupti deleniti?
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nobis at tempora quibusdam facere
+					blanditiis? Iure expedita, ipsa totam natus accusamus rerum quibusdam fuga facere ab rem minima?
+					Sapiente deserunt voluptatum obcaecati sed voluptatem minima culpa labore molestias eaque velit
+					quibusdam quis, alias id ratione? Veritatis rem, at molestias mollitia esse, illo maiores in
+					pariatur dignissimos a odit. Laboriosam reprehenderit blanditiis magni optio vel molestiae quam!
+					Incidunt consequuntur, rerum dicta nesciunt mollitia ea reiciendis et quasi iste magni commodi, quia
+					nam ipsum qui. Veritatis rem, nam dicta optio, earum nisi hic aliquid beatae enim possimus aliquam
+					cupiditate neque, expedita libero est blanditiis atque iure dolor incidunt odit deserunt
+					necessitatibus architecto! Beatae, ipsam quia perspiciatis obcaecati voluptatum quam autem odit
+					mollitia doloribus vero exercitationem id recusandae voluptatibus distinctio sint, minus similique
+					dolores. A rem eum ratione excepturi quis nesciunt officia saepe accusamus necessitatibus voluptatem
+					dolor fugit at, pariatur assumenda reprehenderit neque corporis eius, ut vel exercitationem quos
+					fuga repudiandae? Tempora vero dolore assumenda. Quod quas ea magni. Fugit iusto ipsa totam nostrum,
+					dolores deserunt error recusandae consequatur dicta optio maiores iure, nisi provident! Magnam omnis
+					non neque esse molestiae id aspernatur! Quae amet minus iure eos saepe deserunt, veritatis corrupti
+					deleniti?
 				</div>
-				<div class="d-none d-xl-block row"></div> <!--to je zato da se zgornji div ne potegne do konca strani-->
+				<div class="d-none d-xl-block row"></div>
+				<!--to je zato da se zgornji div ne potegne do konca strani-->
 			</div>
 			<div id="klaviature">
 				<!-- tole je za lokalnega userja, da vidis sam sebe -->
@@ -208,8 +237,7 @@
 					<div id="mainPlayerStatusBar" class="row rounded-top bg-secondary text-white">
 						<div class="col">
 							<button type="button" class="btn btn-sm btn-secondary">
-								<span id="myName" class="popravi-sumnike">myName</span> <span id="myRtt"
-									class="badge badge-light">0 ms</span>
+								<span id="myName">myName</span> <span id="myRtt" class="badge badge-light">0 ms</span>
 							</button>
 						</div>
 					</div>
