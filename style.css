@@ -1,154 +1,159 @@
 /* Zato da je JZZ.input.Kbd() oziroma pianoIn, pianoOut pravilno renderiran. Drugač so presledki med tipkami, ker so <span>. */
 .pianoroll > span > span {
-	box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 /* Da knofi nimajo outline */
-.btn-primary:hover,.btn-primary:focus,.btn-primary:active, 
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
 .btn-primary:active:focus:not(:disabled):not(.disabled),
-.btn:focus, .btn:active, .btn:hover{
-    box-shadow: none!important;
-    outline: 0;
+.btn:focus,
+.btn:active,
+.btn:hover {
+  box-shadow: none !important;
+  outline: 0;
 }
 
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
 .navbar {
-    /* padding: 15px 10px; */
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  /* padding: 15px 10px; */
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
+  box-shadow: none;
+  outline: none !important;
+  border: none;
 }
 
 #sidebar {
-    min-width: 220px;
-    max-width: 220px;
-    transition: all 0.3s;
+  min-width: 220px;
+  max-width: 220px;
+  transition: all 0.3s;
 }
 
 #sidebar.active {
-    margin-left: -220px;
-    transform: rotateY(100deg);
+  margin-left: -220px;
+  transform: rotateY(100deg);
 }
 
 #sidebar .sidebar-header {
-    /* padding: 20px; */
-    background: #6d7fcc;
+  /* padding: 20px; */
+  background: #6d7fcc;
 }
 
 a[data-toggle="collapse"] {
-    position: relative;
+  position: relative;
 }
 
 .dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 }
 
 #klaviature {
-    transition: all 0.3s;
-    max-width: fit-content;
-    min-width: fit-content;
+  transition: all 0.3s;
+  max-width: fit-content;
+  min-width: fit-content;
 }
 
 #sidebarCollapse {
-    width: 40px;
-    height: 40px;
-    background: #f5f5f5;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: #f5f5f5;
+  cursor: pointer;
 }
 
 #sidebarCollapse span {
-    width: 80%;
-    height: 2px;
-    margin: 0 auto;
-    display: block;
-    background: #555;
-    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
-    transition-delay: 0.2s;
+  width: 80%;
+  height: 2px;
+  margin: 0 auto;
+  display: block;
+  background: #555;
+  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+  transition-delay: 0.2s;
 }
 
 /* Animacija križca */
 #sidebarCollapse span:first-of-type {
-    transform: rotate(45deg) translate(2px, 2px);
+  transform: rotate(45deg) translate(2px, 2px);
 }
 #sidebarCollapse span:nth-of-type(2) {
-    opacity: 0;
+  opacity: 0;
 }
 #sidebarCollapse span:last-of-type {
-    transform: rotate(-45deg) translate(1px, -1px);
+  transform: rotate(-45deg) translate(1px, -1px);
 }
 
-
 #sidebarCollapse.active span {
-    transform: none;
-    opacity: 1;
-    margin: 5px auto;
+  transform: none;
+  opacity: 1;
+  margin: 5px auto;
 }
 
 @media (max-width: 1100px) {
-    #sidebar {
-        margin-left: -220px;
-        transform: rotateY(90deg);
-    }
-    #sidebar.active {
-        margin-left: 0;
-        transform: none;
-    }
-    #sidebarCollapse span:first-of-type,
-    #sidebarCollapse span:nth-of-type(2),
-    #sidebarCollapse span:last-of-type {
-        transform: none;
-        opacity: 1;
-        margin: 5px auto;
-    }
-    #sidebarCollapse.active span {
-        margin: 0 auto;
-    }
-    #sidebarCollapse.active span:first-of-type {
-        transform: rotate(45deg) translate(2px, 2px);
-    }
-    #sidebarCollapse.active span:nth-of-type(2) {
-        opacity: 0;
-    }
-    #sidebarCollapse.active span:last-of-type {
-        transform: rotate(-45deg) translate(1px, -1px);
-    }
+  #sidebar {
+    margin-left: -220px;
+    transform: rotateY(90deg);
+  }
+  #sidebar.active {
+    margin-left: 0;
+    transform: none;
+  }
+  #sidebarCollapse span:first-of-type,
+  #sidebarCollapse span:nth-of-type(2),
+  #sidebarCollapse span:last-of-type {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+  }
+  #sidebarCollapse.active span {
+    margin: 0 auto;
+  }
+  #sidebarCollapse.active span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+  }
+  #sidebarCollapse.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  #sidebarCollapse.active span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
 }
 
 @media (max-width: 1220px) {
-    #klaviature {
-        margin-left: auto;
-        margin-right: auto;
-    }
+  #klaviature {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 #content {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 1600px) {
+  #content {
+    flex-direction: column;
   }
-  
-  /* Responsive layout - makes a one column layout instead of a two-column layout */
-  @media (max-width: 1600px) {
-    #content {
-      flex-direction: column;
-    }
-  }
+}
 
 #learn {
-    max-width: 981px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
+  max-width: 981px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
 }

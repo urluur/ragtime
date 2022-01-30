@@ -1,4 +1,4 @@
-let vsi_instrumenti = `
+let all_instruments = `
 <option value="acoustic_grand_piano">Acoustic Grand Piano</option>
 <option value="bright_acoustic_piano">Bright Acoustic Piano</option>
 <option value="electric_grand_piano">Electric Grand Piano</option>
@@ -128,4 +128,4 @@ let vsi_instrumenti = `
 <option value="applause">Applause</option>
 <option value="gunshot">Gunshot</option>
 `;
-$('#select_instruments').append(vsi_instrumenti);
+$('#select_instruments').append(all_instruments);
