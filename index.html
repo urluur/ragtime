@@ -94,8 +94,8 @@
 				</ul>
 				<div class="pe-2"></div>
 				<div class="pb-2"></div>
-				<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
-					data-bs-target="#navodila">Help</button>
+				<button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#navodila"
+					style="cursor: help;">Help</button>
 			</div>
 		</div>
 	</nav>
@@ -254,7 +254,7 @@
 						Your keystrokes will be displayed on first pianoroll. Click on pianoroll name to change it.
 						Others joining this session will see you by that name as you will see separate pianoroll for
 						each participant.
-						In case you dont have any MIDI devices attached you can play on QWERTY keyboard by choosing
+						In case you don't have any MIDI devices attached you can play on QWERTY keyboard by choosing
 						'HTML Piano In'. Click on your pianoroll, then type on your keyboard.
 						If you just want to observe and listen then only choose MIDI OUT device.
 					</p>
@@ -303,16 +303,19 @@
 		</script>
 
 		<script>
-			var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-			var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-				return new bootstrap.Popover(popoverTriggerEl)
-			})
-			var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
-				container: 'body'
-			})
-			var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-				trigger: 'focus'
-			})
+			function enablePopovers() {
+				var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+				var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+					return new bootstrap.Popover(popoverTriggerEl)
+				})
+				var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+					container: 'body'
+				})
+				var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+					trigger: 'focus'
+				})
+			}
+			enablePopovers();
 		</script>
 		<script src="js/learn.js"></script>
 	</div>

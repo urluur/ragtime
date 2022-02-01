@@ -9,25 +9,28 @@ data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
 </button>
 </div>
 <ul class="list-group pb-2">
-<li id="ch1" class="list-group-item list-group-item-action">
+<li id="ch1" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-question-square"></i>Which piano to choose?
 </li>
-<li id="ch2" class="list-group-item list-group-item-action">
+<script>
+$('#learn').on('click', '#ch1', whichBuy);
+</script>
+<li id="ch2" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-vector-pen"></i>Proper piano technique
 </li>
-<li id="ch3" class="list-group-item list-group-item-action">
+<li id="ch3" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note"></i>Starting to play
 </li>
-<li id="ch4" class="list-group-item list-group-item-action">
+<li id="ch4" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note-list"></i>Reading basic piano sheets
 </li>
-<li id="ch5" class="list-group-item list-group-item-action">
+<li id="ch5" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note-beamed"></i>Notes, timing and dynamics
 </li>
-<li id="ch6" class="list-group-item list-group-item-action">
+<li id="ch6" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-mortarboard-fill"></i>Learn a song!
 </li>
-<li id="ch7" class="list-group-item list-group-item-action">
+<li id="ch7" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-arrow-repeat"></i>Practice
 </li>
 </ul>
@@ -43,6 +46,9 @@ var which_buy = `
 <i class=" bi bi-arrow-90deg-up"></i>
 </h4>
 </button>
+<script>
+$('#learn').on('click', '#learn_back', goHome);
+</script>
 <i class="px-2 bi bi-question-square"></i>
 <b>Which piano to choose?</b>
 </p>
@@ -348,3 +354,16 @@ plenty of apps available online, most of them for free.
 </div>
 </div>
 `;
+
+function whichBuy() {
+	$('#learn_swap').empty();
+	$('#learn_swap').append(which_buy);
+	enablePopovers();
+}
+
+function goHome() {
+	$('#learn_swap').empty();
+	$('#learn_swap').append(main_tree);
+}
+
+$('#learn_swap').append(main_tree);
