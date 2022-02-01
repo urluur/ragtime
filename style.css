@@ -133,6 +133,9 @@ a[data-toggle="collapse"] {
   #sidebarCollapse.active span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
   }
+  #learn {
+    margin-left: 1.5rem;
+  }
 }
 
 @media (max-width: 1220px) {
@@ -144,7 +147,7 @@ a[data-toggle="collapse"] {
 
 #content {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
@@ -155,5 +158,5 @@ a[data-toggle="collapse"] {
 }
 
 #learn {
-  max-width: 981px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
+  max-width: 960px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
 }

@@ -138,7 +138,6 @@
 						</div>
 						<button class="btn btn-info btn-sm text-white" role="button" id="midiFileOut">
 							<i class="bi bi-file-earmark-music-fill"></i>
-							<!--zaenkrat ne nardi še nč?-->
 							Select a recording
 						</button>
 						<div class="mt-2">
@@ -208,37 +207,7 @@
 				</div>
 			</div>
 		</div>
-		<nav id="content" class="ps-2">
-			<div id="learn" class="collapse">
-				<div class="row m-2 p-2 me-3 mt-3 ms-1 bg-white rounded">
-					<p class="lead">Ready to learn?</p>
-					<ul class="list-group">
-						<li id="ch1" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-question-square"></i>Which piano to choose?
-						</li>
-						<li id="ch2" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-vector-pen"></i>Proper piano technique
-						</li>
-						<li id="ch3" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-music-note"></i>Starting to play
-						</li>
-						<li id="ch4" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-music-note-list"></i>Reading basic piano sheets
-						</li>
-						<li id="ch5" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-music-note-beamed"></i>Notes, timing and dynamics
-						</li>
-						<li id="ch6" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-mortarboard-fill"></i>Learn a song!
-						</li>
-						<li id="ch7" class="list-group-item list-group-item-action">
-							<i class="pe-3 bi bi-arrow-repeat"></i>Practice
-						</li>
-					</ul>
-				</div>
-				<div class="d-none d-xl-block row"></div>
-				<!--to je zato da se zgornji div ne potegne do konca strani-->
-			</div>
+		<nav id="content" class="ps-2 container-fluid">
 			<div id="klaviature">
 				<!-- tole je za lokalnega userja, da vidis sam sebe -->
 				<div id="mainPlayer" class="container-fluid p-3">
@@ -255,6 +224,18 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div id="learn" class="collapse me-4">
+				<div id="learn_swap" class="row m-2 p-2 me-3 mt-3 ms-1 bg-white rounded container-fluid">
+					<!--! swap -->
+
+					<div id="main-learn">
+					</div>
+
+					<!--! end swap -->
+				</div>
+				<div class="d-none d-xl-block row"></div>
+				<!--to je zato da se zgornji div ne potegne do konca strani-->
 			</div>
 		</nav>
 	</div> <!-- id=mainContainer -->
@@ -320,6 +301,20 @@
 				});
 			});
 		</script>
+
+		<script>
+			var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+			var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+				return new bootstrap.Popover(popoverTriggerEl)
+			})
+			var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+				container: 'body'
+			})
+			var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+				trigger: 'focus'
+			})
+		</script>
+		<script src="js/learn.js"></script>
 	</div>
 </body>
 
