@@ -987,8 +987,8 @@ $(document).ready(function () {
 
 
 	// Create a client instance
-	var mqttSrv = 'test.mosquitto.org';
-	var mqttPort = 8081;
+	// var mqttSrv = 'test.mosquitto.org';
+	// var mqttPort = 8081;
 	// var mqttSrv = 'fandangoc.dmz6.net';
 	// var mqttPort = 8081;
 

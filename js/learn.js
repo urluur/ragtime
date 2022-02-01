@@ -18,6 +18,9 @@ $('#learn').on('click', '#ch1', whichBuy);
 <li id="ch2" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-vector-pen"></i>Proper piano technique
 </li>
+<script>
+$('#learn').on('click', '#ch2', properTechnique);
+</script>
 <li id="ch3" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note"></i>Starting to play
 </li>
@@ -355,10 +358,170 @@ plenty of apps available online, most of them for free.
 </div>
 `;
 
+var proper_technique = `
+<div id="main-learn">
+<div id="main-learn" class="p-1">
+<div class="d-flex flex-row justify-content-between">
+<p class="lead">
+<button class="btn p-0 m-0" type="button" id="learn_back">
+<h4>
+<i class=" bi bi-arrow-90deg-up"></i>
+</h4>
+</button>
+<script>
+$('#learn').on('click', '#learn_back', goHome);
+</script>
+<i class="px-2 bi bi-vector-pen"></i>
+<b>Proper piano technique</b>
+</p>
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
+</button>
+</div>
+<div class="accordion" id="decidePianoAccordion">
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingOne">
+<button class="accordion-button" type="button" data-bs-toggle="collapse"
+data-bs-target="#collapseOne" aria-expanded="true"
+aria-controls="collapseOne">
+Lower body
+</button>
+</h2>
+<div id="collapseOne" class="accordion-collapse collapse show"
+aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+<!-- * Lower body -->
+<ul>
+<li>
+Bench
+<p>
+Sit on a comfortable stool or bench with no pillows. The height
+is really important, so buying an adjustable piano bench might
+be important. Place it on the middle of the piano.
+</p>
+</li>
+<li>
+Distance
+<p>
+Distance the bench from the piano, so you can easily reach all
+the keys.
+</p>
+</li>
+<li>
+Legs
+<p>
+Place your feet under your knees, and not under your bench. You
+will easily reach the pedals from this position.
+</p>
+</li>
+</ul>
+<!-- * End Lower body -->
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingTwo">
+<button class="accordion-button collapsed" type="button"
+data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+aria-expanded="false" aria-controls="collapseTwo">
+Upper body
+</button>
+</h2>
+<div id="collapseTwo" class="accordion-collapse collapse"
+aria-labelledby="headingTwo" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+
+<!-- * Upper body -->
+<ul>
+<li>
+Back
+<p>Sit in an upright position with straight back. Bad posture will
+cause back pain and your performances won't look nice.</p>
+</li>
+<li>
+Elbows
+<p>
+Your elbows should point slightly outward and follow you when
+you reach each end of the keyboard.
+</p>
+</li>
+<li>
+Shoulders
+<p>
+Relax your shoulders and don't bring them forward. You have to
+keep your back straight.
+</p>
+</li>
+</ul>
+<!-- * End Upper body -->
+
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingThree">
+<button class="accordion-button collapsed" type="button"
+data-bs-toggle="collapse" data-bs-target="#collapseThree"
+aria-expanded="false" aria-controls="collapseThree">
+Wrists
+</button>
+</h2>
+<div id="collapseThree" class="accordion-collapse collapse"
+aria-labelledby="headingThree" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+<!-- * Wrists -->
+<ul>
+<li>
+Fingers
+<p>
+Place your fingers parallel to the keys. They should cover about
+half of the white keys, almost to where black keys start.
+</p>
+<ol>
+<li>
+Pinky
+<p>
+Just because your pinky finger is the weakest, doesn't
+mean it can't play. Curve it along with another fingers
+and use it to build it's strength.
+</p>
+</li>
+<li>
+Thumb
+<p>
+Unlike others fingers, thumb shouldn't be curved,
+instead keep it straight and relaxed.
+</p>
+</li>
+</ol>
+</li>
+<li>
+No buckling
+<p>
+Your fingers should press down straight, without bending the
+first joint back. Take care to push the keys with your
+fingertips.
+</p>
+</li>
+</ul>
+<!-- * End Wrists -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+`;
+
 function whichBuy() {
 	$('#learn_swap').empty();
 	$('#learn_swap').append(which_buy);
 	enablePopovers();
+}
+
+function properTechnique() {
+	$('#learn_swap').empty();
+	$('#learn_swap').append(proper_technique);
 }
 
 function goHome() {
