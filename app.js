@@ -221,7 +221,7 @@ synth = JZZ.synth.MIDIjs({ soundfontUrl: "https://gleitz.github.io/midi-js-sound
  * Loads an instrument
  * @param {string} instrumentName - Name of the instrument you want to load
  */
-function loadAndChangeTo(instrumentName) {
+async function loadAndChangeTo(instrumentName) {
 	MIDI.loadPlugin({
 		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
 		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FatBoy/",
@@ -373,14 +373,14 @@ $(document).ready(function () {
 	- DONE -> custom session name
 	- DONE -> multi recordings per session -> NEEDFIX (popravi crappy implementacijo topic + payload msgja)
 	- DONE -> audible metronom, dodaj settinge (tempo in imena: legato, allegro, vivace...)
+	- DONE: NEEDFIX: CANNOT_REPRODUCE -> če narobe napišeš instrument v loadAndChangeTo() te vrže vn (mqtt pomoje) [luka's note: sm naredu dropdown da se ćlouk ne more zmotit]
 	- NEEDFIX: TESTIRAJ -> če odpreš session medtem ko nekdo igra in še ni inicializiran piano potem gre neki na bad zarad incoming midi eventa, ki ga nima kam dat
 	- NEEDFIX: TESTIRAJ -> če daš playMeFromServer=1 potem neki mqtt zajamra in se vrže dol
-	- NEEDFIX: CANNOT_REPRODUCE -> če narobe napišeš instrument v loadAndChangeTo() te vrže vn (mqtt pomoje)
 	- NEEDFIX: audio routing omfg - kam se bo zdej predvajal midiSession; na 'Web Audio' ali midi soundfonts?
 	- NEEDFIX: izbereš en recording, daš play, izbereš drug recording, daš play = igrata oba = treba popravt!
 	- NEEDFIX: če maš recordingse in daš change class name potem se recordingi ne prenesejo
 	- IMPROVEMENT: var smf (oziroma midi session data) spremeni da bo objektno
-	- IMPROVEMENT: namest prompt naredi modal window in dodaj kakšn input validation
+	- IMPROVEMENT: namest prompt naredi modal window in dodaj kakšn input validation [luka's note: regex že je, modal se pa lahko še naredi]
 	- IMPROVEMENT: metronom start naj dejansko zacne od zacetka, ker sedaj je resume in lahko traja preden slisis prvi tick takoj po startu
 	- FEATURE_REQUEST: stisneš record in snemaš unga k igra
 	- FEATURE_REQUEST: chord builder, npr stisneš F in ti nardi kaj vem... F major 7 flat 5
@@ -564,7 +564,7 @@ $(document).ready(function () {
 	}
 
 	/**
-	 * TODO: work on this one :)
+	 * TODO: FIXME: var smf is global, please do something about it
 	 * - Ştop recording midi session
 	 * - Save 
 	 * @returns True on success | False on fail
@@ -975,7 +975,6 @@ $(document).ready(function () {
 				}
 			}
 		}
-
 	};
 
 
@@ -987,8 +986,8 @@ $(document).ready(function () {
 
 
 	// Create a client instance
-	// var mqttSrv = 'test.mosquitto.org';
-	// var mqttPort = 8081;
+	var mqttSrv = 'test.mosquitto.org';
+	var mqttPort = 8081;
 	// var mqttSrv = 'fandangoc.dmz6.net';
 	// var mqttPort = 8081;
 
