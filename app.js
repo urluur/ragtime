@@ -363,6 +363,8 @@ function midiSessionAddNote(jmidi) {
 
 // var dt = setInterval(function() { console.log(myName);}, 50);
 
+let fixStartingToPlay;
+
 $(document).ready(function () {
 
 	/*
@@ -759,6 +761,51 @@ $(document).ready(function () {
 
 		}
 	}
+
+	/**
+	 * Plays the middle C note
+	 * TODO: Cannot call this function from dynamically added HTML elements!
+	 */
+	async function playMiddleC() {
+		var jmidi;
+		let note = 60;
+
+		jmidi = JZZ.MIDI.noteOn(0, note, 127);
+		midiHandler(jmidi);
+		await sleep(1000);
+
+		jmidi = JZZ.MIDI.noteOff(0, note, 127);
+		setTimeout(midiHandler, 15, jmidi);
+
+		await sleep(40);
+	}
+
+	/**
+	 * Plays the C major scale
+	 * TODO: Cannot call this function from dynamically added HTML elements!
+	 */
+	async function playScale() {
+		var jmidi;
+		let playOnlyWhiteKeys = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1];
+		let key = 0;
+		for (let note = 60; note <= 73; note++) {
+			if (playOnlyWhiteKeys[key] == 1) {
+				jmidi = JZZ.MIDI.noteOn(0, note, 127);
+				midiHandler(jmidi);
+				await sleep(300);
+				jmidi = JZZ.MIDI.noteOff(0, note, 127);
+				setTimeout(midiHandler, 15, jmidi);
+				await sleep(40);
+			}
+			key++;
+		}
+	}
+
+	fixStartingToPlay = () => {
+		$('playMiddleC').on('click', playMiddleC);
+		$('playScale').on('click', playScale);
+	}
+
 
 	function midiPlayerPlay() {
 		console.log('inside function: ' + arguments.callee.name);

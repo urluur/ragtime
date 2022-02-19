@@ -160,3 +160,15 @@ a[data-toggle="collapse"] {
 #learn {
   max-width: 960px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
 }
+
+.inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* select {
+  width: 15em;
+} */
