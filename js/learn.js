@@ -30,6 +30,9 @@ $('#learn').on('click', '#ch3', startingToPlay);
 <li id="ch4" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note-list"></i>Reading basic piano sheets
 </li>
+<script>
+$('#learn').on('click', '#ch4', basicSheet);
+</script>
 <li id="ch5" class="list-group-item list-group-item-action" style="cursor: pointer;">
 <i class="pe-3 bi bi-music-note-beamed"></i>Notes, timing and dynamics
 </li>
@@ -606,7 +609,107 @@ fixStartingToPlay();
 </script>
 `;
 
+let basic_sheet = `
+<div id="main-learn">
+<div id="main-learn" class="p-1">
+<div class="d-flex flex-row justify-content-between">
+<p class="lead">
+<button class="btn p-0 m-0" type="button" id="learn_back">
+<h4>
+<i class=" bi bi-arrow-90deg-up"></i>
+</h4>
+</button>
+<script>
+$('#learn').on('click', '#learn_back', goHome);
+</script>
+<i class="px-2 bi bi-music-note-list"></i>
+<b>Reading basic piano sheets</b>
+</p>
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
+</button>
+</div>
+<div class="accordion" id="decidePianoAccordion">
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingOne">
+<button class="accordion-button" type="button" data-bs-toggle="collapse"
+data-bs-target="#collapseOne" aria-expanded="true"
+aria-controls="collapseOne">
+Starting position and orientation
+</button>
+</h2>
+<div id="collapseOne" class="accordion-collapse collapse show"
+aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+<div id=staff>
+<div id=clef>
+<svg height="245" width="116" viewBox="0 0 232 490" stroke="#000"
+stroke-width="10" fill="none">
+<path
+d="m 131,334 c -32,-21 -45,-36 -20,-58 27,-24 70,-26 96,0 26,26 28,66 -8,96 -36,29 -96,33 -128,17 -32,-15 -56,-49 -42,-89 23,-68 95,-70 154,-142 49,-59 52,-170 1,-149 -51,21 -30,412 -104,461 -40,27 -59,13 -76,-11" />
+</svg>
+</div>
+<div id=l0></div>
+<div id=l1></div>
+<div id=l2></div>
+<div id=l3></div>
+<div id=l4></div>
+<div id=l5></div>
+<div id=c></div>
+<div id=d></div>
+<div id=e></div>
+<div id=f></div>
+<div id=g></div>
+<div id=a></div>
+<div id=b></div>
+</div>
 
+<script>
+
+</script>
+
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingTwo">
+<button class="accordion-button collapsed" type="button"
+data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+aria-expanded="false" aria-controls="collapseTwo">
+neki 2 title
+</button>
+</h2>
+<div id="collapseTwo" class="accordion-collapse collapse"
+aria-labelledby="headingTwo" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+
+neki 2 body
+
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingThree">
+<button class="accordion-button collapsed" type="button"
+data-bs-toggle="collapse" data-bs-target="#collapseThree"
+aria-expanded="false" aria-controls="collapseThree">
+neki 3 title
+</button>
+</h2>
+<div id="collapseThree" class="accordion-collapse collapse"
+aria-labelledby="headingThree" data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+neki 3 body
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+connectStaff();
+</script>
+`;
 
 function whichBuy() {
 	$('#learn_swap').empty();
@@ -622,6 +725,11 @@ function properTechnique() {
 function startingToPlay() {
 	$('#learn_swap').empty();
 	$('#learn_swap').append(starting_to_play);
+}
+
+function basicSheet() {
+	$('#learn_swap').empty();
+	$('#learn_swap').append(basic_sheet);
 }
 
 function goHome() {

@@ -819,13 +819,9 @@ $(document).ready(function () {
 			}
 		}).or(function () { alert('Cannot open MIDI In!\n' + this.err()); });
 
-		var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5', ww: 64, bw: 36 })
-			.or(function () { alert('Cannot open MIDI In!\n' + this.err()); });
-
-		piano.connect(staff).connect(out);
-		staff.connect(piano); // circular connection is ok!
+		pianoIn.connect(staff);
+		staff.connect(pianoIn);
 	}
-
 
 	function midiPlayerPlay() {
 		console.log('inside function: ' + arguments.callee.name);
