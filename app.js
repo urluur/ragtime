@@ -364,6 +364,7 @@ function midiSessionAddNote(jmidi) {
 // var dt = setInterval(function() { console.log(myName);}, 50);
 
 let fixStartingToPlay;
+let connectStaff;
 
 $(document).ready(function () {
 
@@ -804,6 +805,25 @@ $(document).ready(function () {
 	fixStartingToPlay = () => {
 		$('playMiddleC').on('click', playMiddleC);
 		$('playScale').on('click', playScale);
+	}
+
+	connectStaff = () => {
+		JZZ.synth.Tiny.register();
+		var out = JZZ().openMidiOut();
+
+		var staff = JZZ.input.Kbd({
+			keys: [
+				['c', 'c5'], ['d', 'd5'], ['e', 'e5'], ['f', 'f5'], ['g', 'g5'], ['a', 'a5'], ['b', 'b5']
+			], onCreate: function () {
+				this.getKeys().setStyle({ backgroundColor: 'rgba(255,255,255,0.3)' }, { backgroundColor: 'rgba(0,0,0,0.3)' });
+			}
+		}).or(function () { alert('Cannot open MIDI In!\n' + this.err()); });
+
+		var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5', ww: 64, bw: 36 })
+			.or(function () { alert('Cannot open MIDI In!\n' + this.err()); });
+
+		piano.connect(staff).connect(out);
+		staff.connect(piano); // circular connection is ok!
 	}
 
 

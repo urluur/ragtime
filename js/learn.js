@@ -518,93 +518,95 @@ fingertips.
 
 let starting_to_play = `
 <div id="main-learn">
-	<div id="main-learn" class="p-1">
-		<div class="d-flex flex-row justify-content-between">
-			<p class="lead">
-				<button class="btn p-0 m-0" type="button" id="learn_back">
-					<h4>
-						<i class=" bi bi-arrow-90deg-up"></i>
-					</h4>
-				</button>
-				<script>
-					$('#learn').on('click', '#learn_back', goHome);
-				</script>
-				<i class="px-2 bi bi-music-note"></i>
-				<b>Starting to play</b>
-			</p>
-			<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#learn"
-				aria-expanded="false" aria-controls="learn">
-			</button>
-		</div>
-		<div class="accordion" id="decidePianoAccordion">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse"
-						data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						Starting position and orientation
-					</button>
-				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-					data-bs-parent="#decidePianoAccordion">
-					<div class="accordion-body">
-						First take a look only at the black keys. As you can see there are sets of
-						two or three blak keys. Find the set of two black keys closest to the middle
-						of the keyboard. First white key to the left of the black set is
-						<playMiddleC style="cursor: pointer;">
-							<u><b>the middle C</b></u>.
-						</playMiddleC>
-					</div>
-				</div>
-			</div>
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingTwo">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-						data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						Scales
-					</button>
-				</h2>
-				<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-					data-bs-parent="#decidePianoAccordion">
-					<div class="accordion-body">
+<div id="main-learn" class="p-1">
+<div class="d-flex flex-row justify-content-between">
+<p class="lead">
+<button class="btn p-0 m-0" type="button" id="learn_back">
+<h4>
+<i class=" bi bi-arrow-90deg-up"></i>
+</h4>
+</button>
+<script>
+$('#learn').on('click', '#learn_back', goHome);
+</script>
+<i class="px-2 bi bi-music-note"></i>
+<b>Starting to play</b>
+</p>
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#learn"
+aria-expanded="false" aria-controls="learn">
+</button>
+</div>
+<div class="accordion" id="decidePianoAccordion">
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingOne">
+<button class="accordion-button" type="button" data-bs-toggle="collapse"
+data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+Starting position and orientation
+</button>
+</h2>
+<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+First take a look only at the black keys. As you can see there are sets of
+two or three blak keys. Find the set of two black keys closest to the middle
+of the keyboard. First white key to the left of the black set is
+<playMiddleC style="cursor: pointer;">
+<u><b>the middle C</b></u>.
+</playMiddleC>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingTwo">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+Scales
+</button>
+</h2>
+<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
 
-						<p>Keys between the C keys make up an
-							<playScale style="cursor: pointer;">
-								<b><u>scale.</u></b>
-							</playScale>
-							This is called a C major scale. There are other scales (for example: C
-							minor, D major), but we are going to learn them later.
-						</p>
-						<p>
-							The C major scale is made up of 8 keys: <b>C, D, E, F, G, A, B</b> and
-							then another <b>C</b>, but an octave higher.
-						</p>
+<p>Keys between the C keys make up an
+<playScale style="cursor: pointer;">
+<b><u>scale.</u></b>
+</playScale>
+This is called a C major scale. There are other scales (for example: C
+minor, D major), but we are going to learn them later.
+</p>
+<p>
+The C major scale is made up of 8 keys: <b>C, D, E, F, G, A, B</b> and
+then another <b>C</b>, but an octave higher.
+</p>
 
-					</div>
-				</div>
-			</div>
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingThree">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-						data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						Moving hands
-					</button>
-				</h2>
-				<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-					data-bs-parent="#decidePianoAccordion">
-					<div class="accordion-body">
-						Because an octave is made out of 8 keys, you have to move your hand after
-						playing first three keys and then normaly play the other five keys with your
-						hand without moving it again.
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingThree">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+Moving hands
+</button>
+</h2>
+<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+data-bs-parent="#decidePianoAccordion">
+<div class="accordion-body">
+Because an octave is made out of 8 keys, you have to move your hand after
+playing first three keys and then normaly play the other five keys with your
+hand without moving it again.
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script>
 fixStartingToPlay();
 </script>
 `;
+
+
 
 function whichBuy() {
 	$('#learn_swap').empty();
