@@ -809,7 +809,7 @@ $(document).ready(function () {
 
 	connectStaff = () => {
 		JZZ.synth.Tiny.register();
-		var out = JZZ().openMidiOut();
+		// var out = JZZ().openMidiOut();
 
 		var staff = JZZ.input.Kbd({
 			keys: [
