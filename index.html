@@ -63,7 +63,7 @@
 </head>
 
 <body style="background-color:rgb(207, 207, 207);">
-	<nav id="intro " class="navbar navbar-expand-sm navbar-light bg-light mb-0">
+	<nav id="intro" class="navbar navbar-expand-sm navbar-light bg-light mb-0">
 		<div class="container-fluid">
 			<button type="button" id="sidebarCollapse" class="navbar-btn">
 				<span></span>
@@ -85,12 +85,6 @@
 							Learn
 						</button>
 					</li>
-					<li class="nav-item">
-						<button class="btn nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#game"
-							aria-expanded="false" aria-controls="game">
-							Game
-						</button>
-					</li>
 				</ul>
 				<div class="pe-2"></div>
 				<div class="pb-2"></div>
@@ -99,7 +93,6 @@
 			</div>
 		</div>
 	</nav>
-
 
 	<div id="mainContainer" class="d-flex">
 		<div id="sidebar" class="ps-2">
@@ -207,7 +200,7 @@
 				</div>
 			</div>
 		</div>
-		<nav id="content" class="ps-2 container-fluid">
+		<div id="content" class="ps-2 container-fluid">
 			<div id="klaviature">
 				<!-- tole je za lokalnega userja, da vidis sam sebe -->
 				<div id="mainPlayer" class="container-fluid p-3">
@@ -226,7 +219,6 @@
 				</div>
 			</div>
 
-			<!--! odstran show za produkcijo -->
 			<div id="learn" class="collapse me-4">
 				<div id="learn_swap" class="row m-2 p-2 me-3 mt-3 ms-1 bg-white rounded container-fluid">
 					<!--! swap -->
@@ -238,8 +230,8 @@
 				<div class="d-none d-xl-block row"></div>
 				<!--to je zato da se zgornji div ne potegne do konca strani-->
 			</div>
-		</nav>
-	</div> <!-- id=mainContainer -->
+		</div>
+	</div>
 
 	<!-- navodila -->
 	<div class="modal fade" id="navodila" tabindex="-1" aria-labelledby="navodila" aria-hidden="true">

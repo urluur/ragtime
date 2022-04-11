@@ -644,12 +644,15 @@ data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
 <button class="accordion-button" type="button" data-bs-toggle="collapse"
 data-bs-target="#collapseOne" aria-expanded="true"
 aria-controls="collapseOne">
-Starting position and orientation
+The Notes
 </button>
 </h2>
 <div id="collapseOne" class="accordion-collapse collapse show"
 aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
+<p>
+We'll focus on the top staff for now, the treble clef. Find middle C on the keyboard and on the staff below. From here, follow the sequence of the musical alphabet (A to G) to name all the notes found on the treble staff. On the staff, the head of the note shows the pitch.
+</p>
 <div id=staff>
 <div id=clef>
 <svg height="245" width="116" viewBox="0 0 232 490" stroke="#000"
@@ -673,10 +676,6 @@ d="m 131,334 c -32,-21 -45,-36 -20,-58 27,-24 70,-26 96,0 26,26 28,66 -8,96 -36,
 <div id=b></div>
 </div>
 
-<script>
-
-</script>
-
 </div>
 </div>
 </div>
@@ -685,14 +684,16 @@ d="m 131,334 c -32,-21 -45,-36 -20,-58 27,-24 70,-26 96,0 26,26 28,66 -8,96 -36,
 <button class="accordion-button collapsed" type="button"
 data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 aria-expanded="false" aria-controls="collapseTwo">
-neki 2 title
+The Staff
 </button>
 </h2>
 <div id="collapseTwo" class="accordion-collapse collapse"
 aria-labelledby="headingTwo" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-
-neki 2 body
+<p>
+Staff notation is structured around the grand staff: two staves of 5 lines and 4 spaces, connected by a brace on the left. The top staff is usually marked with a treble clef and typically played with the right hand while the bottom staff is usually marked with a bass clef and typically played with the left hand. Middle C lies in the gap between the staves, on an imaginary line. Just as it is the centre point for orientation on the keyboard, so it is on the staff.
+</p>
+<img src="https://images.prismic.io/flowkey/b8a9e688-2eca-459b-a9cc-0b47d24f7afa_middle-c-grand-piano-staff.png?auto=compress,format" class="img-fluid" alt="The Staff">
 
 </div>
 </div>
@@ -702,13 +703,17 @@ neki 2 body
 <button class="accordion-button collapsed" type="button"
 data-bs-toggle="collapse" data-bs-target="#collapseThree"
 aria-expanded="false" aria-controls="collapseThree">
-neki 3 title
+Sharps and flats
 </button>
 </h2>
 <div id="collapseThree" class="accordion-collapse collapse"
 aria-labelledby="headingThree" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-neki 3 body
+<p>
+Black keys are called sharps or flats, depending on the scale. If a note is prefixed with a # symbol, it means it's sharp, so you play a black key to the right of the sharpened key. If a note is prefixed with a ♭, (a soft b) it is a flat note and you play the black key to the left.
+<br>
+If you want to learn more, you should enroll to a music school.
+</p>
 </div>
 </div>
 </div>
@@ -745,13 +750,20 @@ aria-expanded="false" aria-controls="learn">
 <h2 class="accordion-header" id="headingOne">
 <button class="accordion-button" type="button" data-bs-toggle="collapse"
 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-Title 1
+Note length
 </button>
 </h2>
 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
 data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-body 1
+<p>
+Moving from left to right represents moving forward through the music. Just as the position of the note tells you which key to play, the shape of the note tells you how long to play it. We will cover time signatures, subdivisions and timing symbols in Chapter 8, but to get you started:
+<br>
+A whole note is an empty circle and lasts four counts.
+A half note adds a stem and lasts two counts.
+A quarter note fills in the circle and lasts one count.
+</p>
+<img src="https://images.prismic.io/flowkey/aa94ef79-9e44-4dac-9dde-9f372b67d855_whole-half-quarter-note.png?auto=compress,format" class="img-fluid" alt="Note length">
 </div>
 </div>
 </div>
