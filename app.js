@@ -43,8 +43,6 @@ function addToRecordingsList(author, name, b64dataz) {
 
 /**
  * Adds new player
- * TODO: check all player's names in class
- * TODO: receive new player's name and instrument
  * @param {string} playerName - New player's name
  * @returns {boolean} True on success | False on fail
  */
@@ -615,7 +613,6 @@ $(document).ready(function () {
 
 	/**
 	 * Plays the middle C note
-	 * TODO: Cannot call this function from dynamically added HTML elements!
 	 */
 	async function playMiddleC() {
 		var jmidi;
@@ -633,7 +630,6 @@ $(document).ready(function () {
 
 	/**
 	 * Plays the C major scale
-	 * TODO: Cannot call this function from dynamically added HTML elements!
 	 */
 	async function playScale() {
 		var jmidi;
@@ -946,7 +942,6 @@ $(document).ready(function () {
 	}
 
 	/**
-	 * TODO: Work on this one :)
 	 * Plays a note from jmidi to output device
 	 * @param {JZZ.gui.SelectMidiOut} outputDevice - Output device
 	 * @param {JZZ.MIDI} jmidi - Information about played notes
