@@ -651,7 +651,7 @@ The Notes
 aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
 <p>
-We'll focus on the top staff for now, the treble clef. Find middle C on the keyboard and on the staff below. From here, follow the sequence of the musical alphabet (A to G) to name all the notes found on the treble staff. On the staff, the head of the note shows the pitch.
+Let's focus on the top staff for now where is written the treble clef. By finding the middle C on the keyboard and on the staff below, you should follow the sequence of the musical alphabet (A to G) to name all the notes found on the treble staff. On the staff, the head of the note is the one that shows the pitch.
 </p>
 <div id=staff>
 <div id=clef>
@@ -691,7 +691,7 @@ The Staff
 aria-labelledby="headingTwo" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
 <p>
-Staff notation is structured around the grand staff: two staves of 5 lines and 4 spaces, connected by a brace on the left. The top staff is usually marked with a treble clef and typically played with the right hand while the bottom staff is usually marked with a bass clef and typically played with the left hand. Middle C lies in the gap between the staves, on an imaginary line. Just as it is the centre point for orientation on the keyboard, so it is on the staff.
+Staff notation is structured around the grand staff: two staves of 5 lines between which are 4 spaces, connected by a brace on the left. The top staff is usually played  with the right hand and marked with a treble clef while the bottom staff is usually played with the left hand and marked with a bass clef. Middle C lies in the gap between the staves, on an imaginary inner line, which looks like tiny line going through a note horizontally. Middle C is the centre point for orientation on the keyboard, and also on the staff.
 </p>
 <img src="https://images.prismic.io/flowkey/b8a9e688-2eca-459b-a9cc-0b47d24f7afa_middle-c-grand-piano-staff.png?auto=compress,format" class="img-fluid" alt="The Staff">
 
@@ -741,59 +741,30 @@ $('#learn').on('click', '#learn_back', goHome);
 <i class="px-2 bi bi-music-note-beamed"></i>
 <b>Notes, timing and dynamics</b>
 </p>
-<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#learn"
-aria-expanded="false" aria-controls="learn">
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
 </button>
 </div>
 <div class="accordion" id="decidePianoAccordion">
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingOne">
 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+data-bs-target="#collapseOne" aria-expanded="true"
+aria-controls="collapseOne">
 Note length
 </button>
 </h2>
-<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-data-bs-parent="#decidePianoAccordion">
+<div id="collapseOne" class="accordion-collapse collapse show"
+aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
 <p>
-Moving from left to right represents moving forward through the music. Just as the position of the note tells you which key to play, the shape of the note tells you how long to play it. We will cover time signatures, subdivisions and timing symbols in Chapter 8, but to get you started:
+Moving from left to right represents moving forward through the music. The shape of the note tells you how long you play it, meanwhile it’s position represents their pitch. We will cover subdivisions, time signatures and timing symbols in Chapter 8. 
+But to get you started:
 <br>
-A whole note is an empty circle and lasts four counts.
-A half note adds a stem and lasts two counts.
-A quarter note fills in the circle and lasts one count.
+How do you know how much time a note should be played? A whole note lasts four counts and is written as an empty circle/ellipse. A half note adds a stem and lasts two counts. A quarter note fills in the circle and lasts one count.
 </p>
-<img src="https://images.prismic.io/flowkey/aa94ef79-9e44-4dac-9dde-9f372b67d855_whole-half-quarter-note.png?auto=compress,format" class="img-fluid" alt="Note length">
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingTwo">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-title 2
-</button>
-</h2>
-<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-data-bs-parent="#decidePianoAccordion">
-<div class="accordion-body">
-
-body 2
-
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingThree">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-title 3
-</button>
-</h2>
-<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-data-bs-parent="#decidePianoAccordion">
-<div class="accordion-body">
-body 3
+<img src="https://images.prismic.io/flowkey/aa94ef79-9e44-4dac-9dde-9f372b67d855_whole-half-quarter-note.png?auto=compress,format"
+class="img-fluid" alt="Note length">
 </div>
 </div>
 </div>
@@ -818,52 +789,25 @@ $('#learn').on('click', '#learn_back', goHome);
 <i class="px-2 bi bi-mortarboard-fill"></i>
 <b>Learn a song!</b>
 </p>
-<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#learn"
-aria-expanded="false" aria-controls="learn">
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
 </button>
 </div>
 <div class="accordion" id="decidePianoAccordion">
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingOne">
 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-Title 1
+data-bs-target="#collapseOne" aria-expanded="true"
+aria-controls="collapseOne">
+Find a song
 </button>
 </h2>
-<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-data-bs-parent="#decidePianoAccordion">
+<div id="collapseOne" class="accordion-collapse collapse show"
+aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-body 1
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingTwo">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-title 2
-</button>
-</h2>
-<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-data-bs-parent="#decidePianoAccordion">
-<div class="accordion-body">
-
-body 2
-
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingThree">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-title 3
-</button>
-</h2>
-<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-data-bs-parent="#decidePianoAccordion">
-<div class="accordion-body">
-body 3
+Let someone instuct you or try to find an easy song to learn online. You
+shouldn't ever give up. With enough practice you will be able to play the
+song.
 </div>
 </div>
 </div>
@@ -888,52 +832,47 @@ $('#learn').on('click', '#learn_back', goHome);
 <i class="px-2 bi bi-arrow-repeat"></i>
 <b>Practice</b>
 </p>
-<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#learn"
-aria-expanded="false" aria-controls="learn">
+<button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+data-bs-target="#learn" aria-expanded="false" aria-controls="learn">
 </button>
 </div>
 <div class="accordion" id="decidePianoAccordion">
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingOne">
 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-Title 1
+data-bs-target="#collapseOne" aria-expanded="true"
+aria-controls="collapseOne">
+How often should I practice?
 </button>
 </h2>
-<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-data-bs-parent="#decidePianoAccordion">
+<div id="collapseOne" class="accordion-collapse collapse show"
+aria-labelledby="headingOne" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-body 1
+If you want to turn everything into a habit and make it look easy, you will have to practice daily. If this seems difficult, remember that it's only 20 minutes. And if this seems like a lot to you, remember that's less than a sixth of the average time we spend on social media every day.
+<br>
+As your technique improves, your practice will get easier and easier. And as you form positive associations you grow to look forward to it as part of your routine.
+You will even start to miss it when you won't play it for a few days straight. 
+<br>
+But you also can't be too hard on yourself, if you end up playing five days a week, that's fine
 </div>
 </div>
 </div>
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingTwo">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-title 2
+<button class="accordion-button collapsed" type="button"
+data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+aria-expanded="false" aria-controls="collapseTwo">
+When should I practice?
 </button>
 </h2>
-<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-data-bs-parent="#decidePianoAccordion">
+<div id="collapseTwo" class="accordion-collapse collapse"
+aria-labelledby="headingTwo" data-bs-parent="#decidePianoAccordion">
 <div class="accordion-body">
-
-body 2
-
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingThree">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-title 3
-</button>
-</h2>
-<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-data-bs-parent="#decidePianoAccordion">
-<div class="accordion-body">
-body 3
+<p>
+The choice is yours. You are the one to pick best time for practice. In case of flexible schedule, you should try to practise on different hours of the day and figure out which suits you the best. We are all totally different and a hour that might suits you, could never work on someone else.
+<br>
+Mozart played very early or very late, meanwhile Strauss played mid-morning. Consider the schedules of those around you too. An electric keyboard with headphones is fine anytime. But if you own a grand piano, then playing during everyone's favorite TV show - or at 4 a.m. - could make everyone annoyed.
+</p>
 </div>
 </div>
 </div>

@@ -425,7 +425,9 @@ $(document).ready(function () {
 	JZZ();
 	JZZ.synth.Tiny.register('Web Audio');
 
-	pianoIn = JZZ.input.Kbd({ at: 'pianoIn_space', ...mainPianoOptions });
+	pianoIn = JZZ.input.Kbd({
+		at: 'pianoIn_space', ...mainPianoOptions
+	});
 
 	JZZ.input.ASCII({
 		at: 'pianoIn_space', 2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
@@ -861,7 +863,6 @@ $(document).ready(function () {
 	}
 
 	function parseIncomingRttProbe(payloadString) {
-
 		var [sender, rttReported] = payloadString.split(':');
 
 		if (sender == myName) {
