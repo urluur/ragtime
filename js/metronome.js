@@ -14,7 +14,7 @@ class metronome {
             channel[i] = Math.sin(phase) * amp;
             phase += 2 * Math.PI * this.frequency / this.ac.sampleRate;
             if (phase > 2 * Math.PI) {
-              phase -= 2 * Math.PI;
+                phase -= 2 * Math.PI;
             }
             amp -= 1 / duration_frames;
         }
@@ -60,7 +60,3 @@ class metronome {
     }
 
 }
-
-// m = new metronome()
-// m.setTempo(60);
-// m.start();

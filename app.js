@@ -1,13 +1,3 @@
-function Base64ToSmfPlayer() {
-	// base64 to midi data
-	// var smfDataz = JZZ.lib.fromBase64(smfDatazBase64);
-	// var rcvSmf = JZZ.MIDI.SMF(smfDataz);
-
-	// generateSmfPlayer(rcvSmf);
-	// var b64 = midiDataToBase64(rcvSmf);
-	// midiSessionGenerateFile(recordingName + '.mid', smfDatazBase64);
-}
-
 /**
  * Asks you to enter a value with a message
  * Checks value with slovene paragraph regex, prompts until correct input
@@ -49,19 +39,14 @@ function addToRecordingsList(author, name, b64dataz) {
 
 	var uri = 'data:audio/midi;base64,' + b64dataz; // data URI
 	$("#recordingsList").append('<a data-recording-author="' + author + '" data-recording-name="' + name + '" class="list-group-item list-group-item-action p-2 mb-2" data-toggle="list" href="' + uri + '">' + itemName + '</a>');
-	// console.log(author, name, b64dataz);
 };
 
 /**
  * Adds new player
- * TODO: check all player's names in class
- * TODO: receive new player's name and instrument
  * @param {string} playerName - New player's name
  * @returns {boolean} True on success | False on fail
  */
 function addDynamicPlayerHtml(playerName) {
-	console.log('inside function: ' + arguments.callee.name);
-
 	if (playerName == myName) {
 		return false;
 	}
@@ -87,9 +72,7 @@ function addDynamicPlayerHtml(playerName) {
 
 	$('#klaviature').append(newPlayerHtml);
 
-	// https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
 	var domElement = $('#remotePlayerDynamicPiano[data-participant-name="' + playerName + '"]')[0];
-
 	var dynamicPiano = JZZ.input.Kbd({ at: domElement, ...dynamicPianoOptions });
 
 	if (isValidParticipant(playerName)) {
@@ -123,12 +106,10 @@ function removeDynamicPlayerHtml(playerName) {
  * @returns {bool} True if the user is valid | False if user is invalid
  */
 function isValidParticipant(user) {
-	// console.log('inside function: ' + arguments.callee.name);
 	return typeof (participants[user]) !== 'undefined' ? true : false;
 }
 
 function isValidParticipantPiano(user) {
-	// console.log('inside function: ' + arguments.callee.name);
 	return typeof (participants[user]['piano'] !== 'undefined') ? true : false;
 }
 
@@ -153,12 +134,9 @@ function copyShareUrlToClipboard() {
 function promptAndJoinSession() {
 	var newSessionName = promptAndReturnString('Type session name', '');
 	if (newSessionName !== null && newSessionName != '') {
-		// tuki je treba še dodat da se recording iz te seje prenakne v novo
 		window.location.hash = newSessionName;
 		setCookie('sessionName', newSessionName, 3650);
 		location.reload();
-	} else {
-		console.log("Refused to change session!");
 	}
 }
 
@@ -206,32 +184,18 @@ synth = JZZ.synth.MIDIjs({ soundfontUrl: "https://gleitz.github.io/midi-js-sound
 	.or(function () { console.log("JZZ.synth.MIDIjs() soundfontUrl loading..."); alert('Cannot load MIDI.js!\n' + this.err()); })
 	.and(function () { console.log("JZZ.synth.MIDIjs() soundfontUrl loaded"); });
 
-// MIDI.loadPlugin({
-// 		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
-// 		instruments: [ 'acoustic_grand_piano', 'marimba', 'viola' ],
-// 		onprogress: function(state, progress) {
-// 			console.log(state, progress);
-// 		},
-// 		onsuccess: function() {
-// 			MIDI.setVolume(0, 127);
-// 		}
-// 	});
-
 /**
  * Loads an instrument
  * @param {string} instrumentName - Name of the instrument you want to load
  */
 async function loadAndChangeTo(instrumentName) {
 	MIDI.loadPlugin({
-		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
 		soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FatBoy/",
-		// soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/MusyngKite/",
 		instrument: instrumentName,
 		onprogress: function (state, progress) {
 			console.log(state, progress);
 		},
 		onsuccess: function () {
-			console.log("loadAndChangeTo onsuccess: " + instrumentName);
 			MIDI.setVolume(0, 127);
 			MIDI.programChange(0, MIDI.GM.byName[instrumentName].number);
 			let check = `<i class="bi bi-check-lg me-1"></i>`;
@@ -333,22 +297,6 @@ function stopTicker() {
 	midiTimer = null;
 }
 
-// function midiSessionStop() {
-// 	console.log('inside function: ' + arguments.callee.name);
-// 	if (!isMidiSession) { return false; }
-
-// 	// endOfTrack ob zadnjem MIDI eventu, ker drugač predn folk stisne
-// 	// STOP RECORDING lahko traja par sekund in tega nočmo na posnetku
-// 	smf[0].add(midiTicksLastEvent, smfEndOfTrack);
-
-// 	stopTicker();
-// 	midiTicks = 0;
-// 	isMidiSession = false;
-// 	midiSessionFirstNote = true;
-
-// }
-
-
 function midiSessionAddNote(jmidi) {
 	if (!isMidiSession) { return false; }
 	smf[0].add(midiTicks, jmidi);
@@ -361,44 +309,12 @@ function midiSessionAddNote(jmidi) {
 
 }
 
-// var dt = setInterval(function() { console.log(myName);}, 50);
-
 let fixStartingToPlay;
 let connectStaff;
 
 $(document).ready(function () {
 
-	/*
-	TODO
-	- DONE -> če midi session že obstaja in stisneš record potem stari session prepiši z novim
-	- DONE -> custom participant name
-	- DONE -> join session gumb
-	- DONE -> custom session name
-	- DONE -> multi recordings per session -> NEEDFIX (popravi crappy implementacijo topic + payload msgja)
-	- DONE -> audible metronom, dodaj settinge (tempo in imena: legato, allegro, vivace...)
-	- DONE: NEEDFIX: CANNOT_REPRODUCE -> če narobe napišeš instrument v loadAndChangeTo() te vrže vn (mqtt pomoje) [luka's note: sm naredu dropdown da se ćlouk ne more zmotit]
-	- NEEDFIX: TESTIRAJ -> če odpreš session medtem ko nekdo igra in še ni inicializiran piano potem gre neki na bad zarad incoming midi eventa, ki ga nima kam dat
-	- NEEDFIX: TESTIRAJ -> če daš playMeFromServer=1 potem neki mqtt zajamra in se vrže dol
-	- NEEDFIX: audio routing omfg - kam se bo zdej predvajal midiSession; na 'Web Audio' ali midi soundfonts?
-	- NEEDFIX: izbereš en recording, daš play, izbereš drug recording, daš play = igrata oba = treba popravt!
-	- NEEDFIX: če maš recordingse in daš change class name potem se recordingi ne prenesejo
-	- IMPROVEMENT: var smf (oziroma midi session data) spremeni da bo objektno
-	- IMPROVEMENT: namest prompt naredi modal window in dodaj kakšn input validation [luka's note: regex že je, modal se pa lahko še naredi]
-	- IMPROVEMENT: metronom start naj dejansko zacne od zacetka, ker sedaj je resume in lahko traja preden slisis prvi tick takoj po startu
-	- FEATURE_REQUEST: stisneš record in snemaš unga k igra
-	- FEATURE_REQUEST: chord builder, npr stisneš F in ti nardi kaj vem... F major 7 flat 5
-	- FEATURE_REQUEST: s tapkanjem stop ugotovi tempo
-	- FEATURE_REQUEST: ime tonov na tipke - ko je tipka pritisnjena (by Patrik)
-	- FEATURE_REQUEST: prikaz vrstnega reda katero tipko si pritisnil (by Patrik)
-	- FEATURE_REQUEST: prva in zadnja nota na keyboardu za renderirat pianoroll
-	- FEATURE_REQUEST: arpeggiator
-	- FEATURE_REQUEST: če držiš shift ti izpiše katera nota je to (by Patrik)
-	- FEATURE_REQUEST: ko igraš po posnetku ti prikaže noto in jo ne spusti dokler ti ne zaigraš iste, potem gre naprej
-	- FEATURE_REQUEST: pofejki to stran in any way possible https://www.imusic-school.com/en/tools/piano-chords/
-	*/
-
 	/**
-	 * TODO: loadAndChangeTo needs an alternative
 	 * - Changes to your selected instrument in "#select_instruments" form
 	 */
 	function applySound() {
@@ -409,7 +325,7 @@ $(document).ready(function () {
 			</div>
 		`;
 		$('#check_spin').append(spin);
-		loadAndChangeTo(document.getElementById("select_instruments").value); // NEEDFIX: deprecated?
+		loadAndChangeTo(document.getElementById("select_instruments").value);
 	}
 
 	// get/set session name
@@ -417,26 +333,19 @@ $(document).ready(function () {
 	if (typeof (sessionName) === 'undefined') {
 		var sessionName = getCookie('sessionName') || randomName();
 		setCookie('sessionName', sessionName, 3650);
-		// set window URL
-		// window.history.replaceState(null, null, '#' + sessionName);
 		window.location.hash = sessionName;
 	}
 
 	shareUrl = url + '#' + sessionName;
 
-	// $('#sessionName').html('Session name: <a href="'+shareUrl+'">'+sessionName+'</a>');
-	// copyShareUrlToClipboard();
-
-	// brisi cookie myName in raje nastavi mojeIme
 	var checkName = getCookie('myName');
 	if (checkName) {
-		console.log('setCookie ' + checkName + ' 3650 days');
 		setCookie('mojeIme', checkName, 3650);
 	}
 
 	myName = getCookie('mojeIme') || randomName();
 
-	loadAndChangeTo('acoustic_grand_piano'); // deprecated?
+	loadAndChangeTo('acoustic_grand_piano');
 
 	setCookie('mojeIme', myName, 3650);
 	showMyName(myName);
@@ -451,11 +360,6 @@ $(document).ready(function () {
 	$('#myName').on('click', changeMyName);
 	$('#className').text(decodeURI(sessionName));
 
-	// $('body').on('taphold', 'div#recordingsList > a', function (event) { 
-	// 	var myel = $(this)[0];
-	// 	var item = myel.innerText;
-	// 	myel.remove();
-	// });
 
 	// click event handler za vse dinamicne elemente kreirane z addToRecordingsList()
 	$('body').on('click', 'div#recordingsList > a', function (event) {
@@ -464,7 +368,6 @@ $(document).ready(function () {
 		var smfAuthor = element.attr('data-recording-author');
 		var smfName = element.attr('data-recording-name');
 
-		// ctrl or meta + click = delete and remove from server
 		if (event.ctrlKey || event.metaKey) {
 			mqttPub(tMidiSessions + '/' + smfName, '', true);	//retained = true
 			element.remove();
@@ -480,23 +383,6 @@ $(document).ready(function () {
 		generateSmfPlayer(newSmf);
 
 	});
-
-	// $('#recordingsList > a').click(function(e) {
-	// 	console.log('we are here');
-	// 	var hrefData = $(this).attr('href');
-	// 	var [header, smfDatazBase64] = hrefData.split(',');
-
-	// 	var smfDataz = JZZ.lib.fromBase64(smfDatazBase64);
-	// 	var newSmf = JZZ.MIDI.SMF(smfDataz);
-
-	// 	console.log(hrefData);
-	// 	console.log(header);
-	// 	console.log(smfDatazBase64);
-	// 	console.log(smfDataz);
-	// 	console.log(newSmf);
-
-	// 	generateSmfPlayer(newSmf);
-	// });
 
 	metronome = new metronome();
 	$('#metronomeButton').on('click', toggleMetronome);
@@ -536,13 +422,12 @@ $(document).ready(function () {
 		$('#metronomeMarking').text(marking);
 	}
 
-
 	JZZ();
 	JZZ.synth.Tiny.register('Web Audio');
 
-
-	pianoIn = JZZ.input.Kbd({ at: 'pianoIn_space', ...mainPianoOptions });
-	// pianoOut = JZZ.input.Kbd({ at:'pianoOut_space', ...mainPianoOptions });
+	pianoIn = JZZ.input.Kbd({
+		at: 'pianoIn_space', ...mainPianoOptions
+	});
 
 	JZZ.input.ASCII({
 		at: 'pianoIn_space', 2: 'C#5', 3: 'D#5', 5: 'F#5', 6: 'G#5', 7: 'A#5', 9: 'C#6', 0: 'D#6', '+': 'F#6',
@@ -561,26 +446,14 @@ $(document).ready(function () {
 	// handle incoming events from JZZ.gui.SelectMidiIn() device
 	input.connect(midiHandler);
 
-	function jebalaTeFunkcija(pek) {
-		console.log('inside function: ' + arguments.callee.name);
-		return typeof (participants[pek]) !== 'undefined' ? true : false;
-	}
-
 	/**
-	 * TODO: FIXME: var smf is global, please do something about it
-	 * - Ştop recording midi session
+	 * - Stop recording midi session
 	 * - Save 
 	 * @returns True on success | False on fail
 	 */
 	function midiSessionStop() {
-		// add midi footer, stop ticker, toggle record button, ask for session name, generate player, publish to server, generate downloadable file
-		console.log('inside function: ' + arguments.callee.name);
-
-		// session not running?
 		if (!isMidiSession) { return false; }
 
-		// endOfTrack ob zadnjem MIDI eventu, ker drugač predn folk stisne
-		// STOP RECORDING lahko traja par sekund in tega nočmo na posnetku
 		smf[0].add(midiTicksLastEvent, smfEndOfTrack);
 
 		stopTicker();
@@ -590,9 +463,7 @@ $(document).ready(function () {
 
 		buttonRecordToggle(isMidiSession);
 
-		// posnetku damo ime
 		if (msName = midiSessionHasName()) {
-			// FIXME: var smf is global, please do something about it
 			generateSmfPlayer(smf);
 			var b64 = midiDataToBase64(smf);
 			midiSessionPublish(msName, b64);
@@ -609,18 +480,12 @@ $(document).ready(function () {
 	 * @returns True on success | False on fail
 	 */
 	function midiSessionRecord() {
-		console.log('inside function: ' + arguments.callee.name);
-
-		// session already running?
 		if (isMidiSession) { return false; }
 
-		// midi file header
 		smf = new JZZ.MIDI.SMF(0, ppqn);
 		trk = new JZZ.MIDI.SMF.MTrk();
 
 		smfTempo = JZZ.MIDI.smfBPM(bpm);
-		console.log(bpm);
-		console.log(smfTempo);
 
 		smf.push(trk);
 		smf[0].add(0, smfTempo);
@@ -636,7 +501,6 @@ $(document).ready(function () {
 	 * Toggles metronome on/off
 	 */
 	function toggleMetronome() {
-		console.log('inside function: ' + arguments.callee.name);
 		if (!metronome.isRunning) {
 			metronomeStart();
 		} else {
@@ -648,16 +512,6 @@ $(document).ready(function () {
 	 * Starts metronome
 	 */
 	function metronomeStart() {
-
-		// var tempo = promptAndReturnString('Set beats per minute', bpm);
-
-		// if (!tempo) {
-		// 	// alert('canceled');
-		// 	return false;
-		// }
-
-		// bpm = tempo;
-
 		metronome.setTempo(bpm);
 		metronome.start();
 		$('#metronomeButton').removeClass('btn-outline-light');
@@ -689,7 +543,6 @@ $(document).ready(function () {
 			setCookie('mojeIme', myNewName, 3650);
 			showMyName(myNewName);
 			delete requiredInstruments[myName];
-			// tuki je treba poslat svoje ime in instrument ker je kot da smo prsli na novo
 			myName = myNewName;
 		}
 		return true;
@@ -717,7 +570,6 @@ $(document).ready(function () {
 		mqttPub(tNoteEvents, msg);
 	}
 
-	//* Od Markota pcn
 	function publishMyPcn(jmidi) {
 		msg = myName + ':' + jmidi[0] + ',' + jmidi[1];
 		mqttPub(tPcnEvents, msg);
@@ -746,7 +598,6 @@ $(document).ready(function () {
 	}
 
 	async function myLoop() {
-		//21 .. 108
 		var jmidi;
 		for (note = 21; note <= 108; note += 3) {
 
@@ -759,13 +610,11 @@ $(document).ready(function () {
 			setTimeout(midiHandler, 15, jmidi);
 
 			await sleep(40);
-
 		}
 	}
 
 	/**
 	 * Plays the middle C note
-	 * TODO: Cannot call this function from dynamically added HTML elements!
 	 */
 	async function playMiddleC() {
 		var jmidi;
@@ -783,7 +632,6 @@ $(document).ready(function () {
 
 	/**
 	 * Plays the C major scale
-	 * TODO: Cannot call this function from dynamically added HTML elements!
 	 */
 	async function playScale() {
 		var jmidi;
@@ -824,8 +672,6 @@ $(document).ready(function () {
 	}
 
 	function midiPlayerPlay() {
-		console.log('inside function: ' + arguments.callee.name);
-		// if player is populated with midi session data
 		if (typeof (player) !== 'undefined' && !player.playing) {
 			player.connect(output);
 			player.play();
@@ -833,37 +679,7 @@ $(document).ready(function () {
 		}
 	}
 
-	// function midiPlayerStop() {
-	// 	console.log('inside function: ' + arguments.callee.name);
-	// 	if (isMidiSession) {
-
-	// 		// posnetku damo ime
-	// 		if (msName = midiSessionHasName()) {
-	// 			midiSessionStop();
-	// 			// FIXME: var smf is global, please do something about it
-	// 			generateSmfPlayer(smf);
-	// 			var b64 = midiDataToBase64(smf);
-	// 			midiSessionPublish(msName, b64);
-	// 			midiSessionGenerateFile(msName + '.mid', b64);
-	// 			buttonRecordToggle(isMidiSession);
-	// 		} else {
-	// 			alert('msName error inside function: ' + arguments.callee.name);
-	// 			return false;
-	// 		}
-
-	// 	}
-	// 	if (typeof(player) !== 'undefined' && player.playing) {
-	// 		player.stop();
-	// 		buttonPlaySwitch(player.playing);
-	// 	}
-	// 	if (metronome.isRunning) {
-	// 		metronomeStop();
-	// 	}
-	// }
-
-
 	function midiPlayerStop() {
-		console.log('inside function: ' + arguments.callee.name);
 		if (isMidiSession) {
 			midiSessionStop();
 		}
@@ -905,23 +721,7 @@ $(document).ready(function () {
 		}
 	}
 
-	// function midiSessionToggle() {
-	// 	console.log('inside function: ' + arguments.callee.name);
-	// 	if (isMidiSession) {
-	// 		midiSessionStop();
-	// 		generateSmfPlayer(smf);
-	// 		var b64 = midiDataToBase64(smf);
-	// 		midiSessionPublish('onlySession1', b64);
-	// 		midiSessionGenerateFile('ragtime.mid', b64);
-	// 		buttonRecordToggle(isMidiSession);
-	// 	} else {
-	// 		midiSessionRecord();
-	// 		buttonRecordToggle(isMidiSession);
-	// 	}
-	// }
-
 	function midiSessionToggle() {
-		console.log('inside function: ' + arguments.callee.name);
 		if (isMidiSession) {
 			midiSessionStop();
 		} else {
@@ -930,14 +730,12 @@ $(document).ready(function () {
 	}
 
 	function midiDataToBase64(smf) {
-		console.log('inside function: ' + arguments.callee.name);
 		var str = smf.dump(); // MIDI file dumped as a string
 		var b64 = JZZ.lib.toBase64(str); // convert to base-64 string
 		return b64;
 	}
 
 	function midiSessionGenerateFile(filename, b64) {
-		console.log('inside function: ' + arguments.callee.name);
 		var uri = 'data:audio/midi;base64,' + b64; // data URI
 		$('#midiFileOut').attr('href', uri);
 		$('#midiFileOut').attr('download', filename);
@@ -945,32 +743,15 @@ $(document).ready(function () {
 	}
 
 	function generateSmfPlayer(smfDataz) {
-		console.log('inside function: ' + arguments.callee.name);
 		player = JZZ.MIDI.SMF(smfDataz).player();
 		player.onEnd = function () { buttonPlaySwitch(player.playing); };
 		player.connect(pianoIn);
 	}
 
 	function midiSessionPublish(smfName, smfDataz) {
-		console.log('inside function: ' + arguments.callee.name);
 		msg = myName + ':' + smfDataz;
 		mqttPub(tMidiSessions + '/' + smfName, msg, true);	//retained = true
 	}
-
-	function midiSessionReceive(recordingAuthor, recordingName, smfDatazBase64) {
-		console.log('inside function: ' + arguments.callee.name);
-
-		// base64 to midi data
-		// var smfDataz = JZZ.lib.fromBase64(smfDatazBase64);
-		// var rcvSmf = JZZ.MIDI.SMF(smfDataz);
-
-		// generateSmfPlayer(rcvSmf);
-		// var b64 = midiDataToBase64(rcvSmf);
-		// midiSessionGenerateFile(recordingName + '.mid', smfDatazBase64);
-
-		addToRecordingsList(recordingAuthor, recordingName, smfDatazBase64);
-	}
-
 
 	function midiHandler(jmidi) {
 
@@ -978,33 +759,22 @@ $(document).ready(function () {
 
 		var inputIsVirtual = input._name == 'HTML Piano In' ? true : false;
 
-		// https://github.com/jazz-soft/JZZ/blob/master/javascript/JZZ.js#L2158
-
-		// MIDI note event received (off=0x80-0x8f, on=0x90-0x9f)
-		// if ( jmidi.isNoteOn() || jmidi.isNoteOff() ) {
 		if (jmidi.isNoteEvent()) {
-			// send to server ASAP
 			publishMyNote(jmidi);
 
-			// play my notes right now - otherwise they are played when received back from server
 			if (!playMeFromServer) {
 				playReceivedNote(output, jmidi);
 			}
 
-			// show keystrokes that are not from 'HTML Piano In'		
 			if (!inputIsVirtual) {
 				showReceivedNote(pianoIn, jmidi);
 			}
 
-			// are we recording?
 			if (isMidiSession) {
-				// getNoteDuration(jmidi);
 				midiSessionAddNote(jmidi);
 			}
 		}
 
-		//* Od Markota pcn.. zdi se mi da ko spremeniš inštrument ubistvu sploh ne spremeniš programa, ker ta stvar se nikoli ne pošlje
-		// MIDI program change messages 0xc0 .. 0xcf
 		else if (program = jmidi.isProgramChangeEvent()) {
 			output.program(0, jmidi[1]);
 			if (sendProgramChangeEvents) {
@@ -1017,38 +787,25 @@ $(document).ready(function () {
 
 			switch (data) {
 				case JZZ.MIDI.start()[0]: {
-					console.log('MIDI start received: ' + jmidi);
 					midiPlayerPlay();
 					break;
 				}
 				case JZZ.MIDI.stop()[0]: {
-					console.log('MIDI stop received: ' + jmidi);
 					midiPlayerStop();
 					break;
 				}
 				case JZZ.MIDI.continue()[0]: {
-					console.log('MIDI continue received: ' + jmidi);
 					midiSessionToggle();
-					break;
-				}
-
-				default: {
-					console.log('MIDI dataz received: ' + jmidi);
 					break;
 				}
 			}
 		}
 	};
 
-
 	function mylogger(message) {
 		console.log(new Date() + ' ' + message);
-		// console.log(mylogger.caller + ' ' + message);
-		// console.trace();
 	}
 
-
-	// Create a client instance
 	var mqttSrv = 'test.mosquitto.org';
 	var mqttPort = 8081;
 	// var mqttSrv = 'fandangoc.dmz6.net';
@@ -1081,27 +838,22 @@ $(document).ready(function () {
 		// password: 'polyrhythmicSchubert83'
 	};
 
-	// connect mqtt client
 	client.connect(mqttOptions);
 
 	function initRttTimer() {
-		console.log('inside function: ' + arguments.callee.name);
 		if (typeof (rttTimer) === 'number') {
 			clearInterval(rttTimer);
 		}
 		rttTimer = setInterval(sendRttProbe, 500);
 	}
 
-	// called when the client connects
 	function onConnect() {
-		// Once a connection has been made, make a subscription and send a message.
 		mylogger('MQTT onConnect');
 		client.subscribe(tNoteEvents);
 		client.subscribe(tRTT);
 		client.subscribe(tMidiSessions + '/+');
 		client.subscribe(tPcnEvents);
 
-		// RTT timer
 		initRttTimer();
 	}
 
@@ -1111,37 +863,23 @@ $(document).ready(function () {
 	}
 
 	function parseIncomingRttProbe(payloadString) {
-
 		var [sender, rttReported] = payloadString.split(':');
 
-		// me
 		if (sender == myName) {
 			rttReceived = Date.now();
 			rttMeasured = rttReceived - rttSendTime;
-			//$('#rttValue').html('RTT: ' + rttMeasured + ' ms');
 		}
 		updateRttTable(sender, rttReported);
 	}
 
 	function updateRttTable(sender, rtt) {
-		// console.log('inside function: ' + arguments.callee.name);
-
-		var isNew = false;
-
-		// add new
 		if (!isValidParticipant(sender)) {
 			participants[sender] = {};
 			addDynamicPlayerHtml(sender);
-			// isNew = true;
 		}
 
-		// update properties
 		participants[sender]['rtt'] = rtt + ' ms';
 		participants[sender]['lastUpdate'] = Date.now();
-
-		// if (isNew) {
-		// }
-
 	}
 
 	/**
@@ -1163,17 +901,13 @@ $(document).ready(function () {
 	}
 
 	function renderRttTable() {
-		// $('#participants').html('Participants:<br>');
 		for (let user in participants) {
 			// tole je zaradi addDynamicPlayerHtml();
 			if (user == myName) {
 				$('#myRtt').text(participants[user]['rtt']);
 				$('#remotePlayerDynamic[data-participant-name="' + myName + '"]').find('#playerRtt').text(participants[user]['rtt']);
-				// $('#myName').text(user);
-				// $('#participants').append(user + ' (me) - ' + participants[user]['rtt'] + '<br>');
 			} else {
 				$('#remotePlayerDynamic[data-participant-name="' + user + '"]').find('#playerRtt').text(participants[user]['rtt']);
-				// $('#participants').append(user + ' - ' + participants[user]['rtt'] + '<br>');
 			}
 		}
 	}
@@ -1185,7 +919,6 @@ $(document).ready(function () {
 	function onConnectionLost(responseObject) {
 		if (responseObject.errorCode !== 0) {
 			mylogger('MQTT onConnectionLost: ' + responseObject.errorMessage);
-			//console.trace();
 		}
 	}
 
@@ -1195,7 +928,6 @@ $(document).ready(function () {
 	 * @param {JZZ.MIDI} jmidi - Information about played notes
 	 */
 	function showReceivedNote(virtualKbd, jmidi) {
-		// console.log('inside function: ' + arguments.callee.name);
 		var note = jmidi.getNote();
 		var channel = jmidi.getChannel();
 		var velocity = jmidi.getVelocity();
@@ -1211,30 +943,16 @@ $(document).ready(function () {
 	}
 
 	/**
-	 * TODO: Work on this one :)
 	 * Plays a note from jmidi to output device
 	 * @param {JZZ.gui.SelectMidiOut} outputDevice - Output device
 	 * @param {JZZ.MIDI} jmidi - Information about played notes
 	 */
 	function playReceivedNote(outputDevice, jmidi) {
-		// send notes to output when (from others OR my notes after getting them back from server)
-		// tole je za MIDI-OUT (Web Audio ali hardware)
-		// if ( outputDevice.connected() ) {
-		// 	outputDevice.send(jmidi);
-		// }
-
 		if (jmidi.isNoteOn()) {
 			synth.noteOn(0, jmidi.getNote(), jmidi.getVelocity());
 		} else if (jmidi.isNoteOff()) {
 			synth.noteOff(0, jmidi.getNote(), jmidi.getVelocity());
 		}
-
-		// tole je za MIDI.loadplugin soundfont ozirona loadAndChangeTo()
-		// if (jmidi.isNoteOn()) {
-		// 	MIDI.noteOn(0, jmidi.getNote(), jmidi.getVelocity());
-		// } else if (jmidi.isNoteOff()) {
-		// 	MIDI.noteOff(0, jmidi.getNote(), 0);
-		// }
 	}
 
 	/**
@@ -1242,21 +960,16 @@ $(document).ready(function () {
 	 * @param {*} message - A message from the broker
 	 */
 	function onMessageArrived(message) {
-		//mylogger("MQTT onMessageArrived:"+message.payloadString);
 		// incoming MIDI note is received
 		if (message.destinationName == tNoteEvents) {
 			var [sender, midiData] = message.payloadString.split(':');
 			// split by comma and map each element to Number
 			var midiBytes = midiData.split(',').map(Number);
 
-
-			// https://jazz-soft.net/doc/JZZ/jzzmidi.html
 			// It accepts an array or a comma-separated list of the message bytes or another JZZ.MIDI object.
 			var jmidi = new JZZ.MIDI(midiBytes);
 
-			// if (jmidi.isNoteOn() || jmidi.isNoteOff() ) {
 			if (jmidi.isNoteEvent()) {
-
 				// if sender not me OR (implied) sender is me and PlayMeFromServer
 				if (sender != myName) {
 					if (isValidParticipantPiano(sender)) {
@@ -1273,9 +986,8 @@ $(document).ready(function () {
 				}
 			}
 		}
-		//* moj pcn receive
 		else if (message.destinationName == tPcnEvents) {
-			console.log("Dobil si tPcnEvent: (spodaj)");
+			console.log("tPcnEvent:");
 			console.log(message);
 		}
 		// RTT probe received
@@ -1286,12 +998,8 @@ $(document).ready(function () {
 		}
 		// midi session received
 		else if (message.destinationName.startsWith(tMidiSessions)) {
-			// topic=mididerp/sessions/alternativePaganini4/midiSessions/onlySession1
-			// payload=tranceWagner53:TVRoZAAAAAYAAAABAGBNVHJrAAAASwD/UQMHoSAAkCR/EYAkahOQJH8YgCRSFZAmfxOAJk8UkCR/F4AkZxeQJ38VgCdaEZAkfxeAJGoSkCl/GYApTRGQJ38UgCdqS/8vAA==
-
 			recordingName = message.destinationName.split('/')[4];
 			var [recordingAuthor, recordingSmfDatazBase64] = message.payloadString.split(':');
-			// midiSessionReceive(recordingAuthor, recordingName, recordingSmfDatazBase64);
 
 			if (recordingAuthor != '') {
 				addToRecordingsList(recordingAuthor, recordingName, recordingSmfDatazBase64);
