@@ -1,5 +1,5 @@
 /* Zato da je JZZ.input.Kbd() oziroma pianoIn, pianoOut pravilno renderiran. Drugač so presledki med tipkami, ker so <span>. */
-.pianoroll > span > span {
+.pianoroll>span>span {
   box-sizing: content-box;
 }
 
@@ -92,9 +92,11 @@ a[data-toggle="collapse"] {
 #sidebarCollapse span:first-of-type {
   transform: rotate(45deg) translate(2px, 2px);
 }
+
 #sidebarCollapse span:nth-of-type(2) {
   opacity: 0;
 }
+
 #sidebarCollapse span:last-of-type {
   transform: rotate(-45deg) translate(1px, -1px);
 }
@@ -110,10 +112,12 @@ a[data-toggle="collapse"] {
     margin-left: -220px;
     transform: rotateY(90deg);
   }
+
   #sidebar.active {
     margin-left: 0;
     transform: none;
   }
+
   #sidebarCollapse span:first-of-type,
   #sidebarCollapse span:nth-of-type(2),
   #sidebarCollapse span:last-of-type {
@@ -121,18 +125,23 @@ a[data-toggle="collapse"] {
     opacity: 1;
     margin: 5px auto;
   }
+
   #sidebarCollapse.active span {
     margin: 0 auto;
   }
+
   #sidebarCollapse.active span:first-of-type {
     transform: rotate(45deg) translate(2px, 2px);
   }
+
   #sidebarCollapse.active span:nth-of-type(2) {
     opacity: 0;
   }
+
   #sidebarCollapse.active span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
   }
+
   #learn {
     margin-left: 1.5rem;
   }
@@ -158,7 +167,8 @@ a[data-toggle="collapse"] {
 }
 
 #learn {
-  max-width: 960px; /*spremen na neko fiksno vrednost če stvar ne bo delala*/
+  max-width: 960px;
+  /*spremen na neko fiksno vrednost če stvar ne bo delala*/
 }
 
 .inner {
@@ -179,16 +189,19 @@ a[data-toggle="collapse"] {
   height: 420px;
   position: relative;
 }
+
 #staff div {
   display: inline-block;
   position: absolute;
 }
+
 #clef {
   left: 0;
   top: 0;
   margin: 0;
   padding: 0;
 }
+
 #l0,
 #l1,
 #l2,
@@ -200,26 +213,33 @@ a[data-toggle="collapse"] {
   width: 560px;
   left: 0;
 }
+
 #l0 {
   top: 234px;
   left: 98px;
   width: 68px;
 }
+
 #l1 {
   top: 198px;
 }
+
 #l2 {
   top: 162px;
 }
+
 #l3 {
   top: 126px;
 }
+
 #l4 {
   top: 90px;
 }
+
 #l5 {
   top: 54px;
 }
+
 #c,
 #d,
 #e,
@@ -233,30 +253,37 @@ a[data-toggle="collapse"] {
   border-width: 4px;
   border-radius: 50%;
 }
+
 #c {
   top: 220px;
   left: 105px;
 }
+
 #d {
   top: 202px;
   left: 169px;
 }
+
 #e {
   top: 184px;
   left: 233px;
 }
+
 #f {
   top: 166px;
   left: 297px;
 }
+
 #g {
   top: 148px;
   left: 361px;
 }
+
 #a {
   top: 130px;
   left: 425px;
 }
+
 #b {
   top: 112px;
   left: 489px;
