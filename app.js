@@ -1074,11 +1074,11 @@ $(document).ready(function () {
 
 	var mqttOptions = {
 		useSSL: true,
-		reconnect: false,
+		// reconnect: false,
 		timeout: 3,
-		onSuccess: onConnect,
-		userName: 'monophonicBernstein12',
-		password: 'polyrhythmicSchubert83'
+		onSuccess: onConnect
+		// userName: 'monophonicBernstein12',
+		// password: 'polyrhythmicSchubert83'
 	};
 
 	// connect mqtt client
