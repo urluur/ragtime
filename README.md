@@ -12,4 +12,4 @@ Setup:
 
 
 Troubleshooting:
-- If keystrokes from computer eyboard doesn't register, click on the piano keys and try again
+- If keystrokes from computer keyboard doesn't register, click on the piano keys and try again
